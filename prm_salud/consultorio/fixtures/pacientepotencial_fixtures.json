@@ -1,0 +1,262 @@
+[
+  {
+    "model": "consultorio.pacientepotencial",
+    "pk": "bf3128c2-cc22-49ac-bae2-efe7a28360b9",
+    "fields": {
+      "nombres": "Sofía Lucena",
+      "apellidos": "Vargas",
+      "telefono": "0412-3344556",
+      "email": "sofia.lucena@gmail.com",
+      "fecha_contacto": "2025-03-13",
+      "canal_origen": "YouTube",
+      "estado": "prospecto"
+    }
+  },
+  {
+    "model": "consultorio.pacientepotencial",
+    "pk": "011b41ec-e3b3-46f1-8835-3396369ea081",
+    "fields": {
+      "nombres": "Martín Rivas",
+      "apellidos": "García",
+      "telefono": "0414-9988776",
+      "email": "martin.rivas@hotmail.com",
+      "fecha_contacto": "2023-12-24",
+      "canal_origen": "WhatsApp",
+      "estado": "prospecto"
+    }
+  },
+  {
+    "model": "consultorio.pacientepotencial",
+    "pk": "601410bc-b48c-4623-8a0c-4648e9849c05",
+    "fields": {
+      "nombres": "Daniela Torres",
+      "apellidos": "Moreno",
+      "telefono": "0424-5566778",
+      "email": "daniela.torres@yahoo.com",
+      "fecha_contacto": "2023-12-19",
+      "canal_origen": "YouTube",
+      "estado": "prospecto"
+    }
+  },
+  {
+    "model": "consultorio.pacientepotencial",
+    "pk": "d7933f9d-1dfb-4e4e-a447-391c20fc4079",
+    "fields": {
+      "nombres": "Javier Peña",
+      "apellidos": "Salas",
+      "telefono": "0416-2233445",
+      "email": "javier.pena@outlook.com",
+      "fecha_contacto": "2025-01-29",
+      "canal_origen": "YouTube",
+      "estado": "prospecto"
+    }
+  },
+  {
+    "model": "consultorio.pacientepotencial",
+    "pk": "1574236c-7e52-4562-9b60-98507becf2ee",
+    "fields": {
+      "nombres": "Valentina Suárez",
+      "apellidos": "López",
+      "telefono": "0412-1122334",
+      "email": "valentina.suarez@gmail.com",
+      "fecha_contacto": "2023-06-04",
+      "canal_origen": "Instagram",
+      "estado": "prospecto"
+    }
+  },
+  {
+    "model": "consultorio.pacientepotencial",
+    "pk": "20d4e5df-5f95-49d3-b6a3-0c9e7a26d87e",
+    "fields": {
+      "nombres": "Ricardo Méndez",
+      "apellidos": "Paredes",
+      "telefono": "0416-6677889",
+      "email": "ricardo.mendez@gmail.com",
+      "fecha_contacto": "2024-07-09",
+      "canal_origen": "WhatsApp",
+      "estado": "prospecto"
+    }
+  },
+  {
+    "model": "consultorio.pacientepotencial",
+    "pk": "dddf4fb6-f928-44d4-94cd-0beceb140a20",
+    "fields": {
+      "nombres": "Camila Herrera",
+      "apellidos": "Sánchez",
+      "telefono": "0424-1234567",
+      "email": "camila.herrera@gmail.com",
+      "fecha_contacto": "2024-04-26",
+      "canal_origen": "Instagram",
+      "estado": "prospecto"
+    }
+  },
+  {
+    "model": "consultorio.pacientepotencial",
+    "pk": "d83306e4-6905-4932-adf2-70ad81712b04",
+    "fields": {
+      "nombres": "Andrés Molina",
+      "apellidos": "Delgado",
+      "telefono": "0412-7654321",
+      "email": "andres.molina@hotmail.com",
+      "fecha_contacto": "2023-06-16",
+      "canal_origen": "Instagram",
+      "estado": "prospecto"
+    }
+  },
+  {
+    "model": "consultorio.pacientepotencial",
+    "pk": "7fdd90c0-68f5-4286-9c00-6cb7040d6a0c",
+    "fields": {
+      "nombres": "Gabriela Ríos",
+      "apellidos": "Montilla",
+      "telefono": "0416-2345678",
+      "email": "gabriela.rios@gmail.com",
+      "fecha_contacto": "2023-07-03",
+      "canal_origen": "Directo",
+      "estado": "prospecto"
+    }
+  },
+  {
+    "model": "consultorio.pacientepotencial",
+    "pk": "c7df2256-ae4e-40e9-8408-f32eeb5d4f1c",
+    "fields": {
+      "nombres": "Luis Paredes",
+      "apellidos": "Guzmán",
+      "telefono": "0414-3456789",
+      "email": "luis.paredes@gmail.com",
+      "fecha_contacto": "2024-12-19",
+      "canal_origen": "Otro",
+      "estado": "prospecto"
+    }
+  },
+  {
+    "model": "consultorio.pacientepotencial",
+    "pk": "e17491cd-6c66-44d7-affc-ad3bdf79007c",
+    "fields": {
+      "nombres": "Mariana Torres",
+      "apellidos": "Bermúdez",
+      "telefono": "0426-4567890",
+      "email": "mariana.torres@gmail.com",
+      "fecha_contacto": "2025-02-25",
+      "canal_origen": "YouTube",
+      "estado": "prospecto"
+    }
+  },
+  {
+    "model": "consultorio.pacientepotencial",
+    "pk": "d90487e4-0e60-4f93-bcb0-50f7f7b35a63",
+    "fields": {
+      "nombres": "Jorge Ramírez",
+      "apellidos": "Morales",
+      "telefono": "0412-5678901",
+      "email": "jorge.ramirez@gmail.com",
+      "fecha_contacto": "2025-01-18",
+      "canal_origen": "Directo",
+      "estado": "prospecto"
+    }
+  },
+  {
+    "model": "consultorio.pacientepotencial",
+    "pk": "092225d5-8cb0-4363-bf9f-89d4814012c5",
+    "fields": {
+      "nombres": "Natalia Figueroa",
+      "apellidos": "Salcedo",
+      "telefono": "0416-6789012",
+      "email": "natalia.figueroa@gmail.com",
+      "fecha_contacto": "2024-10-26",
+      "canal_origen": "Otro",
+      "estado": "prospecto"
+    }
+  },
+  {
+    "model": "consultorio.pacientepotencial",
+    "pk": "f9d326a2-2a1a-4ef7-a7e7-7e41a0e3b416",
+    "fields": {
+      "nombres": "Pedro Medina",
+      "apellidos": "Cordero",
+      "telefono": "0424-7890123",
+      "email": "pedro.medina@gmail.com",
+      "fecha_contacto": "2023-03-05",
+      "canal_origen": "Directo",
+      "estado": "prospecto"
+    }
+  },
+  {
+    "model": "consultorio.pacientepotencial",
+    "pk": "a4772c8c-0a19-44cd-9bf6-3cf991858978",
+    "fields": {
+      "nombres": "Valeria Castillo",
+      "apellidos": "Rosales",
+      "telefono": "0412-8901234",
+      "email": "valeria.castillo@gmail.com",
+      "fecha_contacto": "2024-04-18",
+      "canal_origen": "Otro",
+      "estado": "prospecto"
+    }
+  },
+  {
+    "model": "consultorio.pacientepotencial",
+    "pk": "0c71da33-c54a-4c2e-a0a8-9e6dedc20d77",
+    "fields": {
+      "nombres": "Esteban Rivas",
+      "apellidos": "García",
+      "telefono": "0416-9012345",
+      "email": "esteban.rivas@gmail.com",
+      "fecha_contacto": "2024-04-19",
+      "canal_origen": "WhatsApp",
+      "estado": "prospecto"
+    }
+  },
+  {
+    "model": "consultorio.pacientepotencial",
+    "pk": "46d25969-92a5-414b-8e17-bfc7fe126497",
+    "fields": {
+      "nombres": "Patricia León",
+      "apellidos": "Mendoza",
+      "telefono": "0424-1230987",
+      "email": "patricia.leon@gmail.com",
+      "fecha_contacto": "2023-04-24",
+      "canal_origen": "WhatsApp",
+      "estado": "prospecto"
+    }
+  },
+  {
+    "model": "consultorio.pacientepotencial",
+    "pk": "26cc8f6d-cd69-4671-b296-b5588d1343f0",
+    "fields": {
+      "nombres": "Tomás Peña",
+      "apellidos": "Villalobos",
+      "telefono": "0412-2340987",
+      "email": "tomas.pena@gmail.com",
+      "fecha_contacto": "2025-04-02",
+      "canal_origen": "Directo",
+      "estado": "prospecto"
+    }
+  },
+  {
+    "model": "consultorio.pacientepotencial",
+    "pk": "cc3dc446-e0e4-4c57-b7a2-0577a853984d",
+    "fields": {
+      "nombres": "Lucía Bravo",
+      "apellidos": "Serrano",
+      "telefono": "0414-3450987",
+      "email": "lucia.bravo@gmail.com",
+      "fecha_contacto": "2024-11-09",
+      "canal_origen": "Otro",
+      "estado": "prospecto"
+    }
+  },
+  {
+    "model": "consultorio.pacientepotencial",
+    "pk": "9e5bd7b9-82a3-4875-aadf-2e0d3247554c",
+    "fields": {
+      "nombres": "Diego Suárez",
+      "apellidos": "Navarro",
+      "telefono": "0426-4560987",
+      "email": "diego.suarez@gmail.com",
+      "fecha_contacto": "2023-09-10",
+      "canal_origen": "Directo",
+      "estado": "prospecto"
+    }
+  }
+]

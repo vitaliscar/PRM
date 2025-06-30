@@ -1,0 +1,57 @@
+[
+  {
+    "model": "consultorio.cita",
+    "pk": 1,
+    "fields": {
+      "paciente": "00e83c9c-1b54-4786-8430-dc9c84146751",
+      "profesional": 1,
+      "fecha": "2025-07-01T09:00:00",
+      "estado": "pendiente",
+      "observaciones": "Seguimiento mensual"
+    }
+  },
+  {
+    "model": "consultorio.cita",
+    "pk": 2,
+    "fields": {
+      "paciente": "ec1f1b71-fa71-483c-9760-b342c4ff81cc",
+      "profesional": 2,
+      "fecha": "2025-07-02T11:00:00",
+      "estado": "pendiente",
+      "observaciones": "Revisión de avances"
+    }
+  },
+  {
+    "model": "consultorio.cita",
+    "pk": 3,
+    "fields": {
+      "paciente": "d4479cf2-d208-48de-8e1e-75ff88a4658b",
+      "profesional": 3,
+      "fecha": "2025-07-03T10:30:00",
+      "estado": "pendiente",
+      "observaciones": "Evaluación de autoestima"
+    }
+  },
+  {
+    "model": "consultorio.cita",
+    "pk": 4,
+    "fields": {
+      "paciente": "5bccf2fd-d757-47a5-86ea-8f8ae66b2b26",
+      "profesional": 4,
+      "fecha": "2025-07-04T15:00:00",
+      "estado": "pendiente",
+      "observaciones": "Terapia de pareja"
+    }
+  },
+  {
+    "model": "consultorio.cita",
+    "pk": 5,
+    "fields": {
+      "paciente": "c26fa5e6-8f7b-4632-8296-d3cb9f58bb24",
+      "profesional": 5,
+      "fecha": "2025-07-05T13:00:00",
+      "estado": "pendiente",
+      "observaciones": "Seguimiento postparto"
+    }
+  }
+]

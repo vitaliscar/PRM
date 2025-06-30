@@ -1,0 +1,37 @@
+{% extends 'consultorio/base.html' %} {% block content %}
+<h2>Detalle de Paciente Potencial</h2>
+<p>
+  <strong>Nombre:</strong> {{ potencial.nombres }} {{ potencial.apellidos }}
+</p>
+<p><strong>Teléfono:</strong> {{ potencial.telefono }}</p>
+<p><strong>Email:</strong> {{ potencial.email }}</p>
+<p>
+  <strong>Canal de origen:</strong> {{ potencial.get_canal_origen_display }}
+</p>
+<p><strong>Estado:</strong> {{ potencial.get_estado_display }}</p>
+<p><strong>Fecha de contacto:</strong> {{ potencial.fecha_contacto }}</p>
+<p><strong>Fecha de conversión:</strong> {{ potencial.fecha_conversion }}</p>
+{% if potencial.paciente %}
+<p>
+  <strong>Paciente convertido:</strong>
+  <a href="{% url 'consultorio:paciente_detail' potencial.paciente.pk %}"
+    >{{ potencial.paciente }}</a
+  >
+</p>
+{% endif %}
+<a
+  href="{% url 'consultorio:pacientepotencial_update' potencial.pk %}"
+  class="btn btn-primary"
+  >Editar</a
+>
+<a
+  href="{% url 'consultorio:pacientepotencial_delete' potencial.pk %}"
+  class="btn btn-danger"
+  >Eliminar</a
+>
+<a
+  href="{% url 'consultorio:pacientepotencial_list' %}"
+  class="btn btn-secondary"
+  >Volver a la lista</a
+>
+{% endblock %}

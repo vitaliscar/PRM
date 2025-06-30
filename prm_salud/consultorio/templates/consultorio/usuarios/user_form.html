@@ -1,0 +1,105 @@
+{% extends 'consultorio/base.html' %}
+{% load static %}
+{% load widget_tweaks %} {# ¡No olvides esta línea para usar add_class! #}
+
+{% block title %}Editar Usuario - PRM{% endblock %}
+
+{% block content %}
+<div class="flex justify-center items-start pt-8 pb-10">
+  <div class="w-full max-w-2xl app-card">
+    <h1 class="text-3xl font-bold text-gray-800 mb-8 text-center flex items-center justify-center gap-3">
+      <div class="p-2 bg-indigo-100 rounded-full">
+        <i data-lucide="user-cog" class="w-6 h-6 text-indigo-600"></i>
+      </div>
+      Información del Usuario
+    </h1>
+
+    <form method="post" id="edit-form" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+      {% csrf_token %}
+      {% for field in user_form %}
+        <div class="flex flex-col gap-1 {% if field.field.widget.input_type == 'checkbox' %}col-span-2{% else %}col-span-1{% endif %}">
+          {% if field.field.widget.input_type == 'checkbox' %}
+            <div class="flex items-center mt-2">
+              {{ field|add_class:"app-input h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" }}
+              <label
+                for="{{ field.id_for_label }}"
+                class="ml-2 text-base font-semibold text-gray-700 cursor-pointer"
+              >
+                {{ field.label }}
+              </label>
+            </div>
+            {% if field.help_text %}
+              <p class="mt-1 text-xs text-gray-500">{{ field.help_text }}</p>
+            {% endif %}
+          {% else %}
+            <label
+              for="{{ field.id_for_label }}"
+              class="text-sm font-semibold text-gray-700"
+            >
+              {{ field.label }}{% if field.field.required %}<span class="text-red-500">*</span>{% endif %}
+            </label>
+            {# APLICANDO CLASE app-input. Ahora su borde será negro y fondo blanco #}
+            {{ field|add_class:"app-input" }}
+            {% if field.help_text %}
+              <p class="mt-1 text-xs text-gray-500">{{ field.help_text }}</p>
+            {% endif %}
+          {% endif %}
+          
+          {% if field.errors %}
+            <div class="text-red-600 text-xs mt-1">
+              {% for error in field.errors %}<p>{{ error }}</p>{% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      {# Campo de rol #}
+      <div class="md:col-span-2 pt-6 border-t border-gray-200 mt-4">
+        <label class="block text-sm font-semibold text-gray-700 mb-1">Rol</label>
+        {% if request.user.perfilusuario.is_admin %}
+          {% for field in perfil_form %}
+            {# APLICANDO CLASE app-input. Su borde será negro y fondo blanco #}
+            {{ field|add_class:"app-input" }}
+            {% if field.help_text %}
+              <p class="mt-1 text-xs text-gray-500">{{ field.help_text }}</p>
+            {% endif %}
+            {% if field.errors %}
+              <div class="text-red-600 text-xs mt-1">
+                {% for error in field.errors %}<p>{{ error }}</p>{% endfor %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          {# El span del rol no editable usará app-input, y su :disabled le dará el fondo gris y borde suave #}
+          <span class="app-input" disabled>{{ user.perfilusuario.get_rol_display }}</span>
+          <p class="mt-1 text-xs text-gray-500">Solo los administradores pueden cambiar el rol de usuario.</p>
+        {% endif %}
+      </div>
+
+      {# Botones de acción #}
+      <div class="md:col-span-2 flex justify-end gap-4 pt-8">
+        <a href="{% url 'consultorio:user_detail' user.id %}" class="app-btn-secondary">
+          <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i> Volver
+        </a>
+        
+        <button type="submit" id="submit-btn" class="app-btn-primary">
+          <i data-lucide="save" class="w-4 h-4 mr-2"></i> Guardar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    lucide.createIcons();
+
+    const form = document.getElementById("edit-form");
+    const submitBtn = document.getElementById("submit-btn");
+
+    form.addEventListener("submit", () => {
+      document.getElementById("loading-overlay").classList.remove("hidden");
+    });
+  });
+</script>
+{% endblock %}

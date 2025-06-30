@@ -1,0 +1,44 @@
+{% extends 'consultorio/base.html' %} {% block content %}
+<h2>Documentos del Paciente</h2>
+<a
+  href="{% url 'consultorio:documentopaciente_create' %}"
+  class="btn btn-primary"
+  >Subir nuevo documento</a
+>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Paciente</th>
+      <th>Fecha de subida</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for documento in documentos %}
+    <tr>
+      <td>{{ documento.nombre }}</td>
+      <td>{{ documento.paciente }}</td>
+      <td>{{ documento.fecha_subida }}</td>
+      <td>
+        <a href="{% url 'consultorio:documentopaciente_detail' documento.pk %}"
+          >Ver</a
+        >
+        |
+        <a href="{% url 'consultorio:documentopaciente_update' documento.pk %}"
+          >Editar</a
+        >
+        |
+        <a href="{% url 'consultorio:documentopaciente_delete' documento.pk %}"
+          >Eliminar</a
+        >
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="4">No hay documentos.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

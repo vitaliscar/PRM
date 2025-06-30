@@ -1,0 +1,53 @@
+{% extends 'consultorio/base.html' %} {% block title %}Detalle del Plan
+Terapéutico{% endblock %} {% block content %}
+<div class="container mx-auto px-4 py-8">
+  <div class="aurora-card">
+    <h1 class="text-2xl font-bold mb-4">Detalle del Plan Terapéutico</h1>
+    <div class="mb-4">
+      <strong>Paciente:</strong> {{ plan.paciente.nombres }} {{
+      plan.paciente.apellidos }}
+    </div>
+    <div class="mb-4">
+      <strong>Profesional:</strong> {{ plan.profesional.nombre_completo }}
+    </div>
+    <div class="mb-4">
+      <strong>Nombre del plan:</strong> {{ plan.nombre_plan }}
+    </div>
+    <div class="mb-4">
+      <strong>Fecha de inicio:</strong> {{ plan.fecha_inicio_plan|date:'d/m/Y'
+      }}
+    </div>
+    <div class="mb-4">
+      <strong>Fecha estimada de fin:</strong> {{
+      plan.fecha_fin_estimada|date:'d/m/Y' }}
+    </div>
+    <div class="mb-4">
+      <strong>Estado:</strong> {{ plan.get_estado_plan_display }}
+    </div>
+    <div class="mb-4">
+      <strong>Objetivo principal:</strong> {{
+      plan.objetivo_principal_terapeutico }}
+    </div>
+    <div class="mb-4">
+      <strong>Metas específicas:</strong>
+      <ul class="list-disc ml-6">
+        {% for meta in plan.metas_especificas %}
+        <li>{{ meta }}</li>
+        {% empty %}
+        <li>No hay metas registradas.</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="mb-4">
+      <strong>Enfoque terapéutico:</strong> {{
+      plan.get_enfoque_terapeutico_display }}
+    </div>
+    <div class="mb-4">
+      <strong>Observaciones:</strong> {{ plan.observaciones_plan }}
+    </div>
+    <a href="{% url 'consultorio:plan_list' %}" class="aurora-btn mt-4"
+      >Volver al listado</a
+    >
+  </div>
+</div>
+{% endblock %}

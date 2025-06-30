@@ -1,0 +1,46 @@
+{% extends 'consultorio/base.html' %} {% block content %}
+<h2>Calendario de Cumpleaños</h2>
+<a href="{% url 'calendariocumpleanos_create' %}" class="btn btn-success mb-2"
+  >Nuevo Cumpleaños</a
+>
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Paciente</th>
+      <th>Fecha de Cumpleaños</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for cumple in object_list %}
+    <tr>
+      <td>{{ cumple.id }}</td>
+      <td>{{ cumple.paciente }}</td>
+      <td>{{ cumple.fecha_cumpleanos }}</td>
+      <td>
+        <a
+          href="{% url 'calendariocumpleanos_detail' cumple.pk %}"
+          class="btn btn-info btn-sm"
+          >Ver</a
+        >
+        <a
+          href="{% url 'calendariocumpleanos_update' cumple.pk %}"
+          class="btn btn-primary btn-sm"
+          >Editar</a
+        >
+        <a
+          href="{% url 'calendariocumpleanos_delete' cumple.pk %}"
+          class="btn btn-danger btn-sm"
+          >Eliminar</a
+        >
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="4">No hay cumpleaños registrados.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

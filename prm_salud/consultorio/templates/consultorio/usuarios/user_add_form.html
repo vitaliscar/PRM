@@ -1,0 +1,16 @@
+{% extends 'consultorio/base.html' %} {% block content %}
+<h1 class="text-2xl font-bold mb-4">Agregar Usuario</h1>
+<form method="post" class="bg-white shadow rounded p-6 max-w-lg mx-auto">
+  {% csrf_token %} {{ form.as_p }}
+  <div class="mt-4 flex gap-2">
+    <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">
+      Crear
+    </button>
+    <a
+      href="{% url 'consultorio:user_list' %}"
+      class="bg-gray-300 text-gray-800 px-4 py-2 rounded"
+      >Cancelar</a
+    >
+  </div>
+</form>
+{% endblock %}

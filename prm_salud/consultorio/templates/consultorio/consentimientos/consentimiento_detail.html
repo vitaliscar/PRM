@@ -1,0 +1,23 @@
+{% extends 'consultorio/base.html' %} {% block content %}
+<h2>Detalle del Consentimiento</h2>
+<p><strong>Paciente:</strong> {{ consentimiento.paciente }}</p>
+<p><strong>Tipo:</strong> {{ consentimiento.get_tipo_display }}</p>
+<p><strong>Firmado por:</strong> {{ consentimiento.firmado_por }}</p>
+<p><strong>Fecha de firma:</strong> {{ consentimiento.fecha_firma }}</p>
+<p>
+  <a href="{{ consentimiento.archivo_pdf.url }}" target="_blank">Ver PDF</a>
+</p>
+<a
+  href="{% url 'consultorio:consentimiento_update' consentimiento.pk %}"
+  class="btn btn-primary"
+  >Editar</a
+>
+<a
+  href="{% url 'consultorio:consentimiento_delete' consentimiento.pk %}"
+  class="btn btn-danger"
+  >Eliminar</a
+>
+<a href="{% url 'consultorio:consentimiento_list' %}" class="btn btn-secondary"
+  >Volver a la lista</a
+>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'consultorio/base.html' %} {% block content %}
+<h1 class="text-2xl font-bold mb-4">Lista de Usuarios</h1>
+<table class="min-w-full bg-white border border-gray-200">
+  <thead>
+    <tr>
+      <th class="py-2 px-4 border-b">ID</th>
+      <th class="py-2 px-4 border-b">Usuario</th>
+      <th class="py-2 px-4 border-b">Nombre</th>
+      <th class="py-2 px-4 border-b">Email</th>
+      <th class="py-2 px-4 border-b">Activo</th>
+      <th class="py-2 px-4 border-b">Staff</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if not request.user.perfilusuario.is_admin %}
+    <tr class="bg-indigo-50 font-semibold">
+      <td class="py-2 px-4 border-b">{{ request.user.id }}</td>
+      <td class="py-2 px-4 border-b">{{ request.user.username }}</td>
+      <td class="py-2 px-4 border-b">{{ request.user.get_full_name }}</td>
+      <td class="py-2 px-4 border-b">{{ request.user.email }}</td>
+      <td class="py-2 px-4 border-b">
+        {{ request.user.is_active|yesno:"Sí,No" }}
+      </td>
+      <td class="py-2 px-4 border-b">
+        {{ request.user.is_staff|yesno:"Sí,No" }}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="6" class="text-center py-2">
+        <a
+          href="{% url 'consultorio:user_detail' request.user.id %}"
+          class="aurora-btn"
+          >Ver mi ficha</a
+        >
+      </td>
+    </tr>
+    {% else %} {% for user in usuarios %}
+    <tr class="hover:bg-gray-100">
+      <td class="py-2 px-4 border-b">{{ user.id }}</td>
+      <td class="py-2 px-4 border-b">{{ user.username }}</td>
+      <td class="py-2 px-4 border-b">{{ user.get_full_name }}</td>
+      <td class="py-2 px-4 border-b">{{ user.email }}</td>
+      <td class="py-2 px-4 border-b">{{ user.is_active|yesno:"Sí,No" }}</td>
+      <td class="py-2 px-4 border-b">{{ user.is_staff|yesno:"Sí,No" }}</td>
+      <td class="py-2 px-4 border-b">
+        <a href="{% url 'consultorio:user_detail' user.id %}" class="aurora-btn"
+          >Ver</a
+        >
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="7" class="text-center py-4">No hay usuarios registrados.</td>
+    </tr>
+    {% endfor %} {% endif %}
+  </tbody>
+</table>
+
+<div class="mt-4">
+  {% if is_paginated %}
+  <div class="flex justify-center">
+    {% if page_obj.has_previous %}
+    <a
+      href="?page={{ page_obj.previous_page_number }}"
+      class="px-3 py-1 bg-gray-200 rounded-l"
+      >Anterior</a
+    >
+    {% endif %}
+    <span class="px-3 py-1"
+      >Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span
+    >
+    {% if page_obj.has_next %}
+    <a
+      href="?page={{ page_obj.next_page_number }}"
+      class="px-3 py-1 bg-gray-200 rounded-r"
+      >Siguiente</a
+    >
+    {% endif %}
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends 'consultorio/base.html' %}
+{% load static %}
+
+{% block title %}Detalle de Usuario - PRM{% endblock %}
+
+{% block content %}
+{# ELIMINADO EL DIV CON EL DEGRADADO AZUL QUE ENVOLVÍA TODO EL CONTENIDO #}
+<div class="flex justify-center items-start pt-8 pb-10"> {# Este div ahora centra la tarjeta en el fondo blanco del body #}
+  <div class="w-full max-w-2xl app-card"> {# Aplicamos la clase app-card para la tarjeta blanca #}
+    <h1 class="text-3xl font-bold text-gray-800 mb-8 text-center flex items-center justify-center gap-3">
+      <div class="p-2 bg-indigo-100 rounded-full">
+        <i data-lucide="user" class="w-6 h-6 text-indigo-600"></i> {# Ícono de usuario #}
+      </div>
+      Detalle de Usuario
+    </h1>
+
+    <div class="space-y-4 text-base text-gray-700">
+      <p class="border-b border-gray-100 pb-2">
+        <strong class="font-semibold text-gray-800">ID:</strong>
+        <span class="ml-2">{{ user.id }}</span>
+      </p>
+      <p class="border-b border-gray-100 pb-2">
+        <strong class="font-semibold text-gray-800">Usuario:</strong>
+        <span class="ml-2">{{ user.username }}</span>
+      </p>
+      <p class="border-b border-gray-100 pb-2">
+        <strong class="font-semibold text-gray-800">Nombre completo:</strong>
+        <span class="ml-2">{{ user.get_full_name|default:"N/A" }}</span>
+      </p>
+      <p class="border-b border-gray-100 pb-2">
+        <strong class="font-semibold text-gray-800">Email:</strong>
+        <span class="ml-2">{{ user.email|default:"N/A" }}</span>
+      </p>
+      <p class="border-b border-gray-100 pb-2">
+        <strong class="font-semibold text-gray-800">Rol:</strong>
+        <span class="ml-2">
+          {% if user.perfilusuario %}
+            {{ user.perfilusuario.get_rol_display }}
+          {% else %}
+            N/A
+          {% endif %}
+        </span>
+      </p>
+      <p class="border-b border-gray-100 pb-2">
+        <strong class="font-semibold text-gray-800">Activo:</strong>
+        <span class="ml-2 {% if user.is_active %}text-green-600 font-semibold{% else %}text-red-600 font-semibold{% endif %}">
+          {{ user.is_active|yesno:"Sí,No" }}
+        </span>
+      </p>
+      <p class="border-b border-gray-100 pb-2">
+        <strong class="font-semibold text-gray-800">Es Staff:</strong>
+        <span class="ml-2 {% if user.is_staff %}text-green-600 font-semibold{% else %}text-red-600 font-semibold{% endif %}">
+          {{ user.is_staff|yesno:"Sí,No" }}
+        </span>
+      </p>
+      <p class="border-b border-gray-100 pb-2">
+        <strong class="font-semibold text-gray-800">Último inicio de sesión:</strong>
+        <span class="ml-2">
+          {% if user.last_login %}
+            {{ user.last_login|date:"d/m/Y H:i" }}
+          {% else %}
+            Nunca
+          {% endif %}
+        </span>
+      </p>
+      <p class="border-b border-gray-100 pb-2">
+        <strong class="font-semibold text-gray-800">Fecha de registro:</strong>
+        <span class="ml-2">
+          {{ user.date_joined|date:"d/m/Y H:i" }}
+        </span>
+      </p>
+    </div>
+
+    <div class="mt-8 flex flex-wrap justify-end gap-4">
+      <a
+        href="{% url 'consultorio:user_update' user.id %}"
+        class="app-btn-primary" {# Usamos la clase app-btn-primary #}
+      >
+        <i data-lucide="edit-3" class="w-4 h-4 mr-2"></i>
+        Editar
+      </a>
+      <a
+        href="{% url 'consultorio:user_delete' user.id %}"
+        class="app-btn-danger" {# Usamos la clase app-btn-danger #}
+      >
+        <i data-lucide="trash-2" class="w-4 h-4 mr-2"></i>
+        Eliminar
+      </a>
+      <a
+        href="{% url 'consultorio:user_list' %}"
+        class="app-btn-secondary" {# Usamos la clase app-btn-secondary #}
+      >
+        <i data-lucide="arrow-left" class="w-4 h-4 mr-2"></i>
+        Volver
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    lucide.createIcons();
+  });
+</script>
+{% endblock %}

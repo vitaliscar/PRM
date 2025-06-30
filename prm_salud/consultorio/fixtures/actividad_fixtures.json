@@ -1,0 +1,67 @@
+[
+  {
+    "model": "consultorio.actividad",
+    "pk": 1,
+    "fields": {
+      "paciente": "00e83c9c-1b54-4786-8430-dc9c84146751",
+      "profesional_creador": 1,
+      "tipo_actividad": "Recordatorio de tarea",
+      "descripcion": "Practicar respiración diafragmática cada mañana.",
+      "fecha_vencimiento": "2025-06-11",
+      "estado_actividad": "Pendiente",
+      "fecha_creacion": "2025-06-01T09:00:00"
+    }
+  },
+  {
+    "model": "consultorio.actividad",
+    "pk": 2,
+    "fields": {
+      "paciente": "ec1f1b71-fa71-483c-9760-b342c4ff81cc",
+      "profesional_creador": 2,
+      "tipo_actividad": "Llamada de seguimiento",
+      "descripcion": "Unirse a una actividad grupal semanal.",
+      "fecha_vencimiento": "2025-06-13",
+      "estado_actividad": "Pendiente",
+      "fecha_creacion": "2025-06-02T10:00:00"
+    }
+  },
+  {
+    "model": "consultorio.actividad",
+    "pk": 3,
+    "fields": {
+      "paciente": "d4479cf2-d208-48de-8e1e-75ff88a4658b",
+      "profesional_creador": 3,
+      "tipo_actividad": "Recordatorio de tarea",
+      "descripcion": "Escribir tres logros personales cada día.",
+      "fecha_vencimiento": "2025-06-16",
+      "estado_actividad": "Pendiente",
+      "fecha_creacion": "2025-06-03T11:00:00"
+    }
+  },
+  {
+    "model": "consultorio.actividad",
+    "pk": 4,
+    "fields": {
+      "paciente": "5bccf2fd-d757-47a5-86ea-8f8ae66b2b26",
+      "profesional_creador": 4,
+      "tipo_actividad": "Preparar sesión",
+      "descripcion": "Practicar diálogo abierto con la pareja dos veces por semana.",
+      "fecha_vencimiento": "2025-06-19",
+      "estado_actividad": "Pendiente",
+      "fecha_creacion": "2025-06-04T12:00:00"
+    }
+  },
+  {
+    "model": "consultorio.actividad",
+    "pk": 5,
+    "fields": {
+      "paciente": "c26fa5e6-8f7b-4632-8296-d3cb9f58bb24",
+      "profesional_creador": 5,
+      "tipo_actividad": "Otra Tarea",
+      "descripcion": "Contactar a un familiar o amigo para conversar cada semana.",
+      "fecha_vencimiento": "2025-06-21",
+      "estado_actividad": "Pendiente",
+      "fecha_creacion": "2025-06-05T13:00:00"
+    }
+  }
+]

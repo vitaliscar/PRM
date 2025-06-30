@@ -1,0 +1,57 @@
+[
+  {
+    "model": "consultorio.historialcambios",
+    "pk": 1,
+    "fields": {
+      "modelo": "Paciente",
+      "objeto_id": "00e83c9c-1b54-4786-8430-dc9c84146751",
+      "usuario": 1,
+      "cambio": "Actualización de dirección y teléfono.",
+      "fecha": "2025-06-11T10:00:00"
+    }
+  },
+  {
+    "model": "consultorio.historialcambios",
+    "pk": 2,
+    "fields": {
+      "modelo": "Paciente",
+      "objeto_id": "ec1f1b71-fa71-483c-9760-b342c4ff81cc",
+      "usuario": 1,
+      "cambio": "Cambio de estado a 'Dado de Alta'.",
+      "fecha": "2025-06-13T11:00:00"
+    }
+  },
+  {
+    "model": "consultorio.historialcambios",
+    "pk": 3,
+    "fields": {
+      "modelo": "Paciente",
+      "objeto_id": "d4479cf2-d208-48de-8e1e-75ff88a4658b",
+      "usuario": 1,
+      "cambio": "Actualización de email de contacto.",
+      "fecha": "2025-06-16T12:00:00"
+    }
+  },
+  {
+    "model": "consultorio.historialcambios",
+    "pk": 4,
+    "fields": {
+      "modelo": "Paciente",
+      "objeto_id": "5bccf2fd-d757-47a5-86ea-8f8ae66b2b26",
+      "usuario": 1,
+      "cambio": "Actualización de motivo de consulta.",
+      "fecha": "2025-06-19T13:00:00"
+    }
+  },
+  {
+    "model": "consultorio.historialcambios",
+    "pk": 5,
+    "fields": {
+      "modelo": "Paciente",
+      "objeto_id": "c26fa5e6-8f7b-4632-8296-d3cb9f58bb24",
+      "usuario": 1,
+      "cambio": "Actualización de fuente de referencia.",
+      "fecha": "2025-06-21T14:00:00"
+    }
+  }
+]

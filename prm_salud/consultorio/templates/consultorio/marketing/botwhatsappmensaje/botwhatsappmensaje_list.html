@@ -1,0 +1,46 @@
+{% extends 'consultorio/base.html' %} {% block content %}
+<h2>Mensajes de Bot de WhatsApp</h2>
+<a href="{% url 'botwhatsappmensaje_create' %}" class="btn btn-success mb-2"
+  >Nuevo Mensaje</a
+>
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Mensaje</th>
+      <th>Fecha</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for mensaje in object_list %}
+    <tr>
+      <td>{{ mensaje.id }}</td>
+      <td>{{ mensaje.texto }}</td>
+      <td>{{ mensaje.fecha_envio }}</td>
+      <td>
+        <a
+          href="{% url 'botwhatsappmensaje_detail' mensaje.pk %}"
+          class="btn btn-info btn-sm"
+          >Ver</a
+        >
+        <a
+          href="{% url 'botwhatsappmensaje_update' mensaje.pk %}"
+          class="btn btn-primary btn-sm"
+          >Editar</a
+        >
+        <a
+          href="{% url 'botwhatsappmensaje_delete' mensaje.pk %}"
+          class="btn btn-danger btn-sm"
+          >Eliminar</a
+        >
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="4">No hay mensajes registrados.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

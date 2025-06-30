@@ -1,0 +1,79 @@
+{% extends 'consultorio/base.html' %} {% load static %} {% block title %}
+Profesionales - PRM {% endblock %} {% block header %} Profesionales {% endblock
+%} {% block content %}
+<div class="max-w-7xl mx-auto p-6">
+  <div class="bg-white shadow-sm rounded-xl overflow-hidden">
+    <div
+      class="flex items-center justify-between px-6 py-5 border-b border-gray-100"
+    >
+      <h1 class="text-2xl font-semibold text-gray-900">
+        Listado de Profesionales
+      </h1>
+      {% if puede_crear %}
+      <a
+        href="{% url 'consultorio:profesional_create' %}"
+        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition"
+        >Registrar Profesional</a
+      >
+      {% endif %}
+    </div>
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="px-6 py-3 text-left text-sm font-medium text-gray-600">
+              Nombre
+            </th>
+            <th class="px-6 py-3 text-left text-sm font-medium text-gray-600">
+              Especialidad
+            </th>
+            <th class="px-6 py-3 text-left text-sm font-medium text-gray-600">
+              Estado
+            </th>
+            <th class="px-6 py-3 text-left text-sm font-medium text-gray-600">
+              Acciones
+            </th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-100">
+          {% for profesional in profesionales %}
+          <tr class="hover:bg-gray-50 transition">
+            <td class="px-6 py-4 text-gray-900">
+              {{ profesional.nombre_completo }}
+            </td>
+            <td class="px-6 py-4">
+              <span class="badge">{{ profesional.especialidad }}</span>
+            </td>
+            <td class="px-6 py-4 text-gray-500">{{ profesional.estado }}</td>
+            <td class="px-6 py-4">
+              <div class="flex flex-wrap gap-2">
+                {% if puede_editar %}
+                <a
+                  href="{% url 'consultorio:profesional_update' profesional.id %}"
+                  class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition"
+                  >Editar</a
+                >
+                {% endif %} {% if puede_eliminar %}
+                <a
+                  href="{% url 'consultorio:profesional_delete' profesional.id %}"
+                  class="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-md transition"
+                >
+                  Eliminar
+                </a>
+                {% endif %}
+              </div>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="4" class="text-center py-8 text-gray-500">
+              No hay profesionales registrados.
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

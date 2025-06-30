@@ -1,0 +1,102 @@
+# Guía de estructura de datos de ejemplo para fixtures Django (consultorio)
+
+A continuación se explica cómo debe estructurarse cada entidad en el archivo JSON de fixtures para el sistema consultorio. Cada objeto del array representa una instancia de un modelo y debe tener los siguientes campos:
+
+- `model`: nombre completo del modelo en formato `app_label.ModelName` (ej: consultorio.paciente)
+- `pk`: clave primaria (UUID o entero, según el modelo)
+- `fields`: diccionario con los campos y valores de la instancia
+
+## Ejemplo general
+{
+  "model": "consultorio.paciente",
+  "pk": "10000000-0000-0000-0000-000000000001",
+  "fields": {
+    "nombres": "Ana",
+    ...otros campos...
+  }
+}
+
+---
+
+## Estructura por entidad
+
+### Paciente
+- model: consultorio.paciente
+- pk: UUID
+- fields: nombres, apellidos, fecha_nacimiento, genero, cedula_identidad, telefono, email, direccion, estado_paciente, fecha_registro, fuente_referencia, motivo_principal_consulta_inicial, estado_inicial_valoracion
+
+### Profesional
+- model: consultorio.profesional
+- pk: entero
+- fields: nombre_completo, numero_colegiado, especialidad_principal, email_profesional, horario_atencion
+
+### Sesion
+- model: consultorio.sesion
+- pk: entero
+- fields: paciente (UUID), profesional (entero), fecha_sesion, hora_inicio, hora_fin, tipo_sesion, estado_sesion
+
+### NotaSesion
+- model: consultorio.notasesion
+- pk: entero
+- fields: sesion (entero), paciente (UUID), profesional (entero), fecha_nota, subjetivo, objetivo, analisis, plan, diagnostico_dsm, progreso_subjetivo_paciente, progreso_objetivo_profesional, tareas_asignadas, temas_abordados, generated_summary
+
+### Actividad
+- model: consultorio.actividad
+- pk: entero
+- fields: paciente (UUID), profesional_creador (entero), tipo_actividad, descripcion, fecha_vencimiento, estado_actividad, fecha_creacion
+
+### DocumentoPaciente
+- model: consultorio.documentopaciente
+- pk: entero
+- fields: paciente (UUID), nombre, archivo, fecha_subida, descripcion
+
+### Cita
+- model: consultorio.cita
+- pk: entero
+- fields: paciente (UUID), profesional (entero), fecha, estado, observaciones
+
+### Consentimiento
+- model: consultorio.consentimiento
+- pk: entero
+- fields: paciente (UUID), fecha_firma, tipo, firmado_por, archivo_pdf
+
+### HistorialCambios
+- model: consultorio.historialcambios
+- pk: entero
+- fields: modelo, objeto_id (UUID o entero según modelo), usuario (puede ser null), cambio, fecha
+
+### PlanTerapeutico
+- model: consultorio.planterapeutico
+- pk: entero
+- fields: paciente (UUID), profesional (entero), nombre_plan, fecha_inicio_plan, fecha_fin_estimada, objetivo_principal_terapeutico, metas_especificas (array), enfoque_terapeutico, estado_plan, fecha_finalizacion_real (puede ser null), observaciones_plan
+
+### PacientePotencial
+- model: consultorio.pacientepotencial
+- pk: UUID
+- fields: nombres, apellidos, telefono, email, fecha_contacto, canal_origen, estado
+
+### InteraccionMarketing
+- model: consultorio.interaccionmarketing
+- pk: entero
+- fields: paciente_potencial (UUID), tipo_interaccion, notas, fecha_interaccion
+
+### RedSocial
+- model: consultorio.redsocial
+- pk: entero
+- fields: canal, fecha_registro, seguidores, interacciones, comentarios
+
+### BotWhatsappMensaje
+- model: consultorio.botwhatsappmensaje
+- pk: entero
+- fields: remitente, destinatario, mensaje, es_respuesta, paciente_potencial (UUID), fecha_envio
+
+### CalendarioCumpleanos
+- model: consultorio.calendariocumpleanos
+- pk: entero
+- fields: tipo, nombre, fecha_cumpleanos, email
+
+---
+
+Cada campo debe respetar el tipo de dato definido en el modelo (string, fecha, booleano, array, etc). Las relaciones foráneas deben referenciar el pk correspondiente (UUID o entero).
+
+Para más detalles, consulta los modelos en consultorio/models.py.

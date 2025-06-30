@@ -1,0 +1,44 @@
+{% extends 'consultorio/base.html' %} {% block content %}
+<h2>Métricas de Redes Sociales</h2>
+<a href="{% url 'consultorio:redsocial_create' %}" class="btn btn-primary"
+  >Nueva métrica</a
+>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Canal</th>
+      <th>Fecha</th>
+      <th>Seguidores</th>
+      <th>Interacciones</th>
+      <th>Comentarios</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for redsocial in redes %}
+    <tr>
+      <td>{{ redsocial.get_canal_display }}</td>
+      <td>{{ redsocial.fecha_registro }}</td>
+      <td>{{ redsocial.seguidores }}</td>
+      <td>{{ redsocial.interacciones }}</td>
+      <td>{{ redsocial.comentarios }}</td>
+      <td>
+        <a href="{% url 'consultorio:redsocial_detail' redsocial.pk %}">Ver</a>
+        |
+        <a href="{% url 'consultorio:redsocial_update' redsocial.pk %}"
+          >Editar</a
+        >
+        |
+        <a href="{% url 'consultorio:redsocial_delete' redsocial.pk %}"
+          >Eliminar</a
+        >
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="6">No hay métricas registradas.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

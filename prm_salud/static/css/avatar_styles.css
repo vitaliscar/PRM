@@ -1,0 +1,23 @@
+@keyframes spin-bounce {
+  0% {
+    transform: rotate(0deg) translateX(48px) rotate(0deg) translateY(0);
+  }
+  25% {
+    transform: rotate(90deg) translateX(48px) rotate(-90deg) translateY(-4px);
+  }
+  50% {
+    transform: rotate(180deg) translateX(48px) rotate(-180deg) translateY(0);
+  }
+  75% {
+    transform: rotate(270deg) translateX(48px) rotate(-270deg) translateY(-4px);
+  }
+  100% {
+    transform: rotate(360deg) translateX(48px) rotate(-360deg) translateY(0);
+  }
+}
+
+.avatar-stickman-bounce {
+  animation: spin-bounce 6s linear infinite;
+  transform-origin: center center;
+  position: absolute;
+}

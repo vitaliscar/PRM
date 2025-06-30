@@ -1,0 +1,20 @@
+{% extends 'consultorio/base.html' %} {% block content %}
+<h2>Detalle de Red Social</h2>
+<ul>
+  <li><strong>Nombre:</strong> {{ redsocial.nombre }}</li>
+  <li>
+    <strong>URL:</strong>
+    <a href="{{ redsocial.url }}" target="_blank">{{ redsocial.url }}</a>
+  </li>
+  <li><strong>Descripción:</strong> {{ redsocial.descripcion }}</li>
+</ul>
+<a href="{% url 'redsocial_update' redsocial.pk %}" class="btn btn-primary"
+  >Editar</a
+>
+<a href="{% url 'redsocial_delete' redsocial.pk %}" class="btn btn-danger"
+  >Eliminar</a
+>
+<a href="{% url 'redsocial_list' %}" class="btn btn-secondary"
+  >Volver al listado</a
+>
+{% endblock %}

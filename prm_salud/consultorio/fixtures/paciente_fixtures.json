@@ -1,0 +1,382 @@
+[
+  {
+    "model": "consultorio.paciente",
+    "pk": "00e83c9c-1b54-4786-8430-dc9c84146751",
+    "fields": {
+      "nombres": "María González",
+      "apellidos": "Fernández",
+      "fecha_nacimiento": "1995-03-22",
+      "genero": "Femenino",
+      "cedula_identidad": "V-18923456",
+      "telefono": "0414-1234567",
+      "email": "maria.gonzalez@gmail.com",
+      "direccion": "Av. Bolívar Norte, Edif. El Sol, Valencia",
+      "estado_paciente": "En Pausa",
+      "fecha_registro": "2023-01-10",
+      "fuente_referencia": "Google Ads",
+      "motivo_principal_consulta_inicial": "Ansiedad por estrés laboral y dificultad para dormir.",
+      "estado_inicial_valoracion": "Moderado"
+    }
+  },
+  {
+    "model": "consultorio.paciente",
+    "pk": "ec1f1b71-fa71-483c-9760-b342c4ff81cc",
+    "fields": {
+      "nombres": "Carlos Ramírez",
+      "apellidos": "Pérez",
+      "fecha_nacimiento": "2003-10-04",
+      "genero": "Masculino",
+      "cedula_identidad": "V-25678901",
+      "telefono": "0412-9876543",
+      "email": "carlos.ramirez@hotmail.com",
+      "direccion": "Calle 8, Urb. La Viña, Maracay",
+      "estado_paciente": "Dado de Alta",
+      "fecha_registro": "2024-11-09",
+      "fuente_referencia": "Directo",
+      "motivo_principal_consulta_inicial": "Dificultad para socializar en la universidad.",
+      "estado_inicial_valoracion": "Leve"
+    }
+  },
+  {
+    "model": "consultorio.paciente",
+    "pk": "d4479cf2-d208-48de-8e1e-75ff88a4658b",
+    "fields": {
+      "nombres": "Ana Martínez",
+      "apellidos": "López",
+      "fecha_nacimiento": "1997-07-08",
+      "genero": "Femenino",
+      "cedula_identidad": "V-20456789",
+      "telefono": "0424-5556677",
+      "email": "ana.martinez@yahoo.com",
+      "direccion": "Resid. Las Palmas, Apto. 3B, Caracas",
+      "estado_paciente": "Activo",
+      "fecha_registro": "2024-04-02",
+      "fuente_referencia": "Redes Sociales",
+      "motivo_principal_consulta_inicial": "Trastorno de alimentación y baja autoestima.",
+      "estado_inicial_valoracion": "Grave"
+    }
+  },
+  {
+    "model": "consultorio.paciente",
+    "pk": "5bccf2fd-d757-47a5-86ea-8f8ae66b2b26",
+    "fields": {
+      "nombres": "José Pérez",
+      "apellidos": "García",
+      "fecha_nacimiento": "2001-04-25",
+      "genero": "Masculino",
+      "cedula_identidad": "V-21876543",
+      "telefono": "0416-3344556",
+      "email": "jose.perez@gmail.com",
+      "direccion": "Callejón El Samán, Barquisimeto",
+      "estado_paciente": "En Pausa",
+      "fecha_registro": "2023-06-27",
+      "fuente_referencia": "Recomendación de Paciente",
+      "motivo_principal_consulta_inicial": "Problemas de pareja y comunicación.",
+      "estado_inicial_valoracion": "Moderado"
+    }
+  },
+  {
+    "model": "consultorio.paciente",
+    "pk": "c26fa5e6-8f7b-4632-8296-d3cb9f58bb24",
+    "fields": {
+      "nombres": "Gabriela Moreno",
+      "apellidos": "Salazar",
+      "fecha_nacimiento": "2001-08-08",
+      "genero": "Femenino",
+      "cedula_identidad": "V-23098765",
+      "telefono": "0412-1122334",
+      "email": "gabriela.moreno@outlook.com",
+      "direccion": "Av. Universidad, Edif. Central, Mérida",
+      "estado_paciente": "Activo",
+      "fecha_registro": "2023-11-03",
+      "fuente_referencia": "Directo",
+      "motivo_principal_consulta_inicial": "Depresión postparto y falta de apoyo familiar.",
+      "estado_inicial_valoracion": "Grave"
+    }
+  },
+  {
+    "model": "consultorio.paciente",
+    "pk": "ccd17ada-0b3d-4ae9-a00f-7bfc168fafc9",
+    "fields": {
+      "nombres": "Luis Salazar",
+      "apellidos": "Vargas",
+      "fecha_nacimiento": "1987-01-06",
+      "genero": "Masculino",
+      "cedula_identidad": "V-17654321",
+      "telefono": "0416-7788990",
+      "email": "luis.salazar@gmail.com",
+      "direccion": "Urb. El Trigal, Casa 12, Valencia",
+      "estado_paciente": "No Acude",
+      "fecha_registro": "2024-08-14",
+      "fuente_referencia": "Desconocido",
+      "motivo_principal_consulta_inicial": "Dificultad para manejar la ira en el trabajo.",
+      "estado_inicial_valoracion": "Moderado"
+    }
+  },
+  {
+    "model": "consultorio.paciente",
+    "pk": "17ba883b-922f-4984-8599-eea4446a56a0",
+    "fields": {
+      "nombres": "Valentina Ríos",
+      "apellidos": "Navarro",
+      "fecha_nacimiento": "1985-04-10",
+      "genero": "Femenino",
+      "cedula_identidad": "V-21098765",
+      "telefono": "0414-000006",
+      "email": "valentina.rios@correo.com",
+      "direccion": "Calle 6",
+      "estado_paciente": "No Acude",
+      "fecha_registro": "2024-04-28",
+      "fuente_referencia": "Otro Profesional de Salud",
+      "motivo_principal_consulta_inicial": "Motivo ejemplo",
+      "estado_inicial_valoracion": "Moderado"
+    }
+  },
+  {
+    "model": "consultorio.paciente",
+    "pk": "f95f0bf7-e61b-4f03-b140-c97d8e5d5d73",
+    "fields": {
+      "nombres": "Martina Bravo",
+      "apellidos": "Serrano",
+      "fecha_nacimiento": "1978-05-05",
+      "genero": "Femenino",
+      "cedula_identidad": "V-22098765",
+      "telefono": "0414-000007",
+      "email": "martina.bravo@correo.com",
+      "direccion": "Calle 7",
+      "estado_paciente": "En Pausa",
+      "fecha_registro": "2023-03-10",
+      "fuente_referencia": "Google Ads",
+      "motivo_principal_consulta_inicial": "Motivo ejemplo",
+      "estado_inicial_valoracion": "Moderado"
+    }
+  },
+  {
+    "model": "consultorio.paciente",
+    "pk": "66cff87a-5d37-4f4e-bfc2-3d149e07e427",
+    "fields": {
+      "nombres": "Camila Herrera",
+      "apellidos": "Sánchez",
+      "fecha_nacimiento": "1991-11-17",
+      "genero": "Femenino",
+      "cedula_identidad": "V-23098766",
+      "telefono": "0414-000008",
+      "email": "camila.herrera@correo.com",
+      "direccion": "Calle 8",
+      "estado_paciente": "En Pausa",
+      "fecha_registro": "2025-01-25",
+      "fuente_referencia": "Directo",
+      "motivo_principal_consulta_inicial": "Motivo ejemplo",
+      "estado_inicial_valoracion": "Moderado"
+    }
+  },
+  {
+    "model": "consultorio.paciente",
+    "pk": "b8661264-64dc-4ccc-83e9-3db78b00c247",
+    "fields": {
+      "nombres": "Joaquín Méndez",
+      "apellidos": "Guzmán",
+      "fecha_nacimiento": "1976-09-08",
+      "genero": "Masculino",
+      "cedula_identidad": "V-24098765",
+      "telefono": "0414-000009",
+      "email": "joaquin.mendez@correo.com",
+      "direccion": "Calle 9",
+      "estado_paciente": "No Acude",
+      "fecha_registro": "2024-04-28",
+      "fuente_referencia": "Otro Profesional de Salud",
+      "motivo_principal_consulta_inicial": "Motivo ejemplo",
+      "estado_inicial_valoracion": "Moderado"
+    }
+  },
+  {
+    "model": "consultorio.paciente",
+    "pk": "bc849b49-aba0-47ad-905d-263b39bef6b0",
+    "fields": {
+      "nombres": "Patricia León",
+      "apellidos": "Mendoza",
+      "fecha_nacimiento": "1971-11-10",
+      "genero": "Femenino",
+      "cedula_identidad": "V-25098765",
+      "telefono": "0414-000010",
+      "email": "patricia.leon@correo.com",
+      "direccion": "Calle 10",
+      "estado_paciente": "En Pausa",
+      "fecha_registro": "2023-12-30",
+      "fuente_referencia": "Desconocido",
+      "motivo_principal_consulta_inicial": "Motivo ejemplo",
+      "estado_inicial_valoracion": "Moderado"
+    }
+  },
+  {
+    "model": "consultorio.paciente",
+    "pk": "f38e3ce2-e012-417e-a9e3-1f546d4d7871",
+    "fields": {
+      "nombres": "Sofía Lucena",
+      "apellidos": "Vargas",
+      "fecha_nacimiento": "1992-12-03",
+      "genero": "Femenino",
+      "cedula_identidad": "V-26098765",
+      "telefono": "0414-000011",
+      "email": "sofia.lucena@correo.com",
+      "direccion": "Calle 11",
+      "estado_paciente": "En Pausa",
+      "fecha_registro": "2025-01-04",
+      "fuente_referencia": "Desconocido",
+      "motivo_principal_consulta_inicial": "Motivo ejemplo",
+      "estado_inicial_valoracion": "Moderado"
+    }
+  },
+  {
+    "model": "consultorio.paciente",
+    "pk": "6d191a71-a1a2-4ae2-aaa0-3b16b9f33159",
+    "fields": {
+      "nombres": "Esteban Rivas",
+      "apellidos": "García",
+      "fecha_nacimiento": "2001-04-07",
+      "genero": "Masculino",
+      "cedula_identidad": "V-27098765",
+      "telefono": "0414-000012",
+      "email": "esteban.rivas@correo.com",
+      "direccion": "Calle 12",
+      "estado_paciente": "Activo",
+      "fecha_registro": "2023-04-16",
+      "fuente_referencia": "Redes Sociales",
+      "motivo_principal_consulta_inicial": "Motivo ejemplo",
+      "estado_inicial_valoracion": "Moderado"
+    }
+  },
+  {
+    "model": "consultorio.paciente",
+    "pk": "04b080fc-6273-4636-9f84-29086db15b27",
+    "fields": {
+      "nombres": "Martín Rivas",
+      "apellidos": "Delgado",
+      "fecha_nacimiento": "1994-01-19",
+      "genero": "Masculino",
+      "cedula_identidad": "V-28098765",
+      "telefono": "0414-000013",
+      "email": "martin.rivas@correo.com",
+      "direccion": "Calle 13",
+      "estado_paciente": "Activo",
+      "fecha_registro": "2023-12-02",
+      "fuente_referencia": "Desconocido",
+      "motivo_principal_consulta_inicial": "Motivo ejemplo",
+      "estado_inicial_valoracion": "Moderado"
+    }
+  },
+  {
+    "model": "consultorio.paciente",
+    "pk": "a6b50c59-af75-4ffa-8757-a3abc9c87276",
+    "fields": {
+      "nombres": "Camila Bravo",
+      "apellidos": "Montilla",
+      "fecha_nacimiento": "1993-03-24",
+      "genero": "Femenino",
+      "cedula_identidad": "V-29098765",
+      "telefono": "0414-000014",
+      "email": "camila.bravo@correo.com",
+      "direccion": "Calle 14",
+      "estado_paciente": "Dado de Alta",
+      "fecha_registro": "2023-06-28",
+      "fuente_referencia": "Recomendación de Paciente",
+      "motivo_principal_consulta_inicial": "Motivo ejemplo",
+      "estado_inicial_valoracion": "Moderado"
+    }
+  },
+  {
+    "model": "consultorio.paciente",
+    "pk": "dd99c5d2-f5f2-40eb-9900-b3cb3ddc3c92",
+    "fields": {
+      "nombres": "Jorge Ramírez",
+      "apellidos": "Morales",
+      "fecha_nacimiento": "2003-01-27",
+      "genero": "Masculino",
+      "cedula_identidad": "V-30098765",
+      "telefono": "0414-000015",
+      "email": "jorge.ramirez@correo.com",
+      "direccion": "Calle 15",
+      "estado_paciente": "En Pausa",
+      "fecha_registro": "2024-12-10",
+      "fuente_referencia": "Desconocido",
+      "motivo_principal_consulta_inicial": "Motivo ejemplo",
+      "estado_inicial_valoracion": "Moderado"
+    }
+  },
+  {
+    "model": "consultorio.paciente",
+    "pk": "5d66d792-0942-4290-8523-2020238e36c3",
+    "fields": {
+      "nombres": "Lucía Bravo",
+      "apellidos": "Serrano",
+      "fecha_nacimiento": "1986-05-06",
+      "genero": "Femenino",
+      "cedula_identidad": "V-31098765",
+      "telefono": "0414-000016",
+      "email": "lucia.bravo@correo.com",
+      "direccion": "Calle 16",
+      "estado_paciente": "Dado de Alta",
+      "fecha_registro": "2023-09-13",
+      "fuente_referencia": "Redes Sociales",
+      "motivo_principal_consulta_inicial": "Motivo ejemplo",
+      "estado_inicial_valoracion": "Moderado"
+    }
+  },
+  {
+    "model": "consultorio.paciente",
+    "pk": "e5603fe1-cb9c-4e2c-b16f-f7cc9985bdd5",
+    "fields": {
+      "nombres": "Natalia Figueroa",
+      "apellidos": "Salcedo",
+      "fecha_nacimiento": "1978-06-04",
+      "genero": "Femenino",
+      "cedula_identidad": "V-32098765",
+      "telefono": "0414-000017",
+      "email": "natalia.figueroa@correo.com",
+      "direccion": "Calle 17",
+      "estado_paciente": "Dado de Alta",
+      "fecha_registro": "2023-08-12",
+      "fuente_referencia": "Recomendación de Paciente",
+      "motivo_principal_consulta_inicial": "Motivo ejemplo",
+      "estado_inicial_valoracion": "Moderado"
+    }
+  },
+  {
+    "model": "consultorio.paciente",
+    "pk": "ef82fc15-23dd-4cc0-ac66-21ec21dde5da",
+    "fields": {
+      "nombres": "Pedro Medina",
+      "apellidos": "Cordero",
+      "fecha_nacimiento": "1991-12-30",
+      "genero": "Masculino",
+      "cedula_identidad": "V-33098765",
+      "telefono": "0414-000018",
+      "email": "pedro.medina@correo.com",
+      "direccion": "Calle 18",
+      "estado_paciente": "No Acude",
+      "fecha_registro": "2023-09-16",
+      "fuente_referencia": "Otro Profesional de Salud",
+      "motivo_principal_consulta_inicial": "Motivo ejemplo",
+      "estado_inicial_valoracion": "Moderado"
+    }
+  },
+  {
+    "model": "consultorio.paciente",
+    "pk": "71ed0c79-e4b8-47ed-b023-222da8250446",
+    "fields": {
+      "nombres": "Gabriela Ríos",
+      "apellidos": "Montilla",
+      "fecha_nacimiento": "1972-10-29",
+      "genero": "Femenino",
+      "cedula_identidad": "V-34098765",
+      "telefono": "0414-000019",
+      "email": "gabriela.rios@correo.com",
+      "direccion": "Calle 19",
+      "estado_paciente": "En Pausa",
+      "fecha_registro": "2024-11-01",
+      "fuente_referencia": "Directo",
+      "motivo_principal_consulta_inicial": "Motivo ejemplo",
+      "estado_inicial_valoracion": "Moderado"
+    }
+  }
+]

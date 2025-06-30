@@ -1,0 +1,83 @@
+{% extends 'consultorio/base.html' %} {% block title %}Notas de Sesión - PRM{%
+endblock %} {% block header %}Notas de Sesión{% endblock %} {% block content %}
+<div class="max-w-4xl mx-auto card p-6 mt-8">
+  <h1 class="text-2xl font-bold mb-6">Listado de Notas de Sesión</h1>
+  <div class="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
+    <table class="min-w-full text-sm text-left text-gray-700 border-collapse">
+      <thead
+        class="bg-white text-gray-500 uppercase text-xs tracking-wider select-none"
+      >
+        <tr>
+          <th
+            class="px-6 py-3 text-center font-semibold border border-gray-200"
+          >
+            Fecha
+          </th>
+          <th
+            class="px-6 py-3 text-center font-semibold border border-gray-200"
+          >
+            Paciente
+          </th>
+          <th
+            class="px-6 py-3 text-center font-semibold border border-gray-200"
+          >
+            Profesional
+          </th>
+          <th
+            class="px-6 py-3 text-center font-semibold border border-gray-200"
+          >
+            Acciones
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for nota in notas %}
+        <tr class="bg-white hover:bg-gray-50 transition">
+          <td
+            class="px-6 py-4 text-center align-middle border border-gray-200 whitespace-nowrap"
+          >
+            {{ nota.fecha_nota|date:"d/m/Y" }}
+          </td>
+          <td
+            class="px-6 py-4 text-center align-middle border border-gray-200 whitespace-nowrap"
+          >
+            {{ nota.paciente.nombres }} {{ nota.paciente.apellidos }}
+          </td>
+          <td
+            class="px-6 py-4 text-center align-middle border border-gray-200 whitespace-nowrap"
+          >
+            {{ nota.profesional.get_nombre_completo }}
+          </td>
+          <td class="px-6 py-4 text-center align-middle border border-gray-200">
+            <a
+              href="{% url 'consultorio:nota_detail' nota.id %}"
+              class="sidebar-link text-xs font-medium transition-colors duration-200"
+              style="background: none; color: var(--primary)"
+              >Ver</a
+            >
+            <a
+              href="{% url 'consultorio:nota_update' nota.id %}"
+              class="sidebar-link text-xs font-medium transition-colors duration-200"
+              style="background: none; color: var(--text-primary)"
+              >Editar</a
+            >
+            <a
+              href="{% url 'consultorio:nota_delete' nota.id %}"
+              class="sidebar-link text-xs font-medium transition-colors duration-200"
+              style="background: none; color: var(--danger)"
+              >Eliminar</a
+            >
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="4" class="text-center py-6 text-gray-400">
+            No hay notas registradas.
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

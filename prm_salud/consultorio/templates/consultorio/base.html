@@ -1,0 +1,483 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Vitalis PRM{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      rel="icon"
+      href="{% static 'consultorio/img/PRM.png' %}"
+      type="image/png"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="{% static 'consultorio/css/main.css' %}" />
+    {% block head_extra %}{% endblock %}
+    <style>
+      /* Estilos para el encabezado (header) */
+      .header-modern {
+        height: 64px;
+        background-color: var(--sidebar-bg); /* Fondo blanco puro */
+        color: var(--text-primary); /* Texto principal */
+      }
+
+      /* Contenedor principal del body para manejar el layout completo */
+      body.main-body-layout {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      /* Contenedor principal que envuelve el contenido despues del header */
+      .content-wrapper {
+        display: flex;
+        flex: 1; /* Permite que este contenedor ocupe el espacio restante vertical */
+        /* margin-top: 64px;  Eliminado para que el contenido quede justo bajo el header sticky */
+        padding-top: 10px; /* Si quieres separación visual, puedes ajustar este valor o quitarlo */
+        padding-left: 10px; /* Separación a la izquierda de la ventana para el sidebar */
+        padding-right: 20px; /* Padding general a la derecha para el contenido principal */
+        gap: 20px; /* Espacio entre la tarjeta del sidebar y el área de contenido principal */
+        align-items: flex-start; /* Alinea los elementos (sidebar y main) a la parte superior */
+      }
+
+      /* Contenedor que da estilo de tarjeta al sidebar y lo hace fijo */
+      .sidebar-card-container {
+        width: 16rem;
+        background-color: var(--sidebar-bg);
+        border-radius: 12px;
+        box-shadow: var(--card-shadow);
+        border: 1px solid var(--sidebar-border);
+        color: var(--text-primary);
+        overflow-y: hidden; /* ← evitar que todo el sidebar haga scroll */
+        position: fixed;
+        top: calc(64px + 10px);
+        left: 10px;
+        height: calc(100vh - (64px + 10px) - 10px);
+        flex-shrink: 0;
+        padding-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+        color: #0a090c;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      /* Ocultar barra de desplazamiento para Chrome, Safari y Opera */
+      .sidebar-card-container::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* El nav debe crecer y permitir scroll si es necesario */
+      .sidebar-card-container nav {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto; /* ← solo el nav hará scroll */
+        padding-right: 4px;
+      }
+
+      /* El div del logo no debe crecer */
+      .sidebar-card-container > div {
+        flex-shrink: 0;
+      }
+
+      /* Estilos para los enlaces del sidebar */
+      .sidebar-link {
+        transition: all 0.2s ease-in-out;
+        color: var(--text-primary);
+        border-radius: 0.25rem;
+      }
+
+      /* El color de texto para los enlaces activos se mantiene blanco (definido en main.css) */
+      .sidebar-link.sidebar-active,
+      .sidebar-link:hover {
+        background-color: var(--primary);
+        color: var(--text-white) !important;
+      }
+
+      .sidebar-link.sidebar-active i,
+      .sidebar-link:hover i {
+        color: var(--icon-hover) !important;
+      }
+
+      /* Footer siempre abajo y full-width */
+      footer {
+        width: 100%;
+        border-top: none !important;
+        color: var(--text-secondary);
+        background: transparent !important;
+        box-shadow: none !important;
+      }
+      /* Ajuste para el contenido principal para dejar espacio al sidebar fijo */
+      .main-content-offset {
+        margin-left: calc(
+          16rem + 20px
+        ); /* Ancho del sidebar (16rem) + gap (20px) */
+        flex: 1; /* Permite que ocupe el espacio restante */
+        padding: 0; /* Reinicia todos los paddings, incluyendo el horizontal del p-6 */
+      }
+
+      /* Ajustes específicos para los íconos del sidebar en el tema blanco */
+      .sidebar-link i {
+        color: var(--icon-main);
+        transition: color 0.2s;
+      }
+
+      /* Oculta scrollbar en todos los navegadores principales */
+      .hide-scrollbar {
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* Internet Explorer 10+ */
+      }
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none; /* Chrome, Safari y Opera */
+      }
+      #scroll-indicator {
+        pointer-events: none;
+        position: absolute;
+        bottom: 1rem;
+        left: 0;
+        right: 0;
+        z-index: 10;
+      }
+    </style>
+  </head>
+
+  <body class="main-body-layout bg-[#e9f7df] text-text-main font-montserrat">
+    <!-- Header -->
+    <header
+      class="flex justify-end items-center px-6 py-3 shadow-sm sticky top-0 left-0 right-0 z-20 w-full header-modern border-b border-gray-200"
+    >
+      {# Espacio para alinear el menú de usuario a la derecha #}
+      <div class="relative">
+        {% if user.is_authenticated %}
+        <button
+          id="user-menu-btn"
+          onclick="toggleUserDropdown()"
+          class="flex items-center gap-2 rounded-full px-3 py-1 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary"
+        >
+          <img
+            src="https://ui-avatars.com/api/?name={{ user.get_full_name|default:user.username }}&background=4f46e5&color=fff&rounded=true&size=32"
+            alt="Avatar"
+            class="rounded-full shadow-sm border border-white"
+          />
+          <span class="font-medium"
+            >{{ user.get_full_name|default:user.username }}</span
+          >
+          <svg
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            viewBox="0 0 24 24"
+            class="w-4 h-4 text-gray-400"
+          >
+            <path d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+
+        <div
+          id="user-dropdown"
+          class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50 hidden"
+        >
+          <a
+            href="{% url 'consultorio:user_update' user.id %}"
+            class="block px-4 py-2 text-sm text-text-main hover:bg-gray-100 flex items-center gap-2"
+          >
+            <i data-lucide="user-cog" class="w-4 h-4"></i> Mi perfil
+          </a>
+          <form action="{% url 'logout' %}" method="post" class="block">
+            {% csrf_token %}
+            <button
+              type="submit"
+              class="w-full px-4 py-2 text-left text-sm text-danger hover:bg-danger/10 flex items-center gap-2"
+            >
+              <i data-lucide="log-out" class="w-4 h-4"></i> Cerrar sesión
+            </button>
+          </form>
+        </div>
+        {% endif %} {% block header_actions %}{% endblock %}
+      </div>
+    </header>
+
+    <!-- Main content area wrapper -->
+    <div class="content-wrapper">
+      <!-- Sidebar Card Container -->
+      <aside
+        class="sidebar-card-container"
+        style="
+          top: calc(64px + 10px);
+          left: 10px;
+          height: calc(100vh - (64px + 10px) - 10px);
+        "
+      >
+        <div class="flex justify-center items-center h-28">
+          <a href="{% url 'consultorio:dashboard' %}">
+            <img
+              src="{% static 'consultorio/img/PRMlogo.png' %}"
+              alt="Logo Vitalis PRM"
+              class="h-16 transition-transform duration-200 hover:scale-105"
+            />
+          </a>
+        </div>
+        <nav
+          id="sidebar-scroll"
+          class="flex flex-col gap-2 px-4 pr-2 overflow-y-scroll hide-scrollbar relative"
+        >
+          <a
+            href="{% url 'consultorio:dashboard' %}"
+            class="sidebar-link flex items-center gap-3 py-3 px-3 rounded-lg {% if request.path == '/consultorio/' %}sidebar-active{% endif %}"
+          >
+            <i data-lucide="home" class="w-5 h-5"></i><span>Inicio</span>
+          </a>
+          <div class="mt-2 border-t border-gray-200 pt-4 mr-4">
+            <h3
+              class="text-xs text-gray-400 uppercase tracking-wider mb-2 ml-2"
+            >
+              Seguimiento
+            </h3>
+            <a
+              href="{% url 'consultorio:paciente_list' %}"
+              class="sidebar-link flex items-center gap-3 py-3 px-3 rounded-lg {% if 'pacientes' in request.path %}sidebar-active{% endif %}"
+            >
+              <i data-lucide="users" class="w-5 h-5"></i><span>Pacientes</span>
+            </a>
+            <a
+              href="{% url 'consultorio:sesion_list' %}"
+              class="sidebar-link flex items-center gap-3 py-3 px-3 rounded-lg {% if 'sesiones' in request.path %}sidebar-active{% endif %}"
+            >
+              <i data-lucide="calendar" class="w-5 h-5"></i
+              ><span>Sesiones</span>
+            </a>
+            <a
+              href="{% url 'consultorio:plan_list' %}"
+              class="sidebar-link flex items-center gap-3 py-3 px-3 rounded-lg {% if 'planes' in request.path %}sidebar-active{% endif %}"
+            >
+              <i data-lucide="clipboard-list" class="w-5 h-5"></i
+              ><span>Planes</span>
+            </a>
+            <a
+              href="{% url 'consultorio:actividad_list' %}"
+              class="sidebar-link flex items-center gap-3 py-3 px-3 rounded-lg {% if 'actividades' in request.path %}sidebar-active{% endif %}"
+            >
+              <i data-lucide="activity" class="w-5 h-5"></i
+              ><span>Actividades</span>
+            </a>
+            <a
+              href="{% url 'consultorio:profesional_list' %}"
+              class="sidebar-link flex items-center gap-3 py-3 px-3 rounded-lg {% if 'profesionales' in request.path %}sidebar-active{% endif %}"
+            >
+              <i data-lucide="award" class="w-5 h-5"></i
+              ><span>Profesionales</span>
+            </a>
+            <a
+              href="{% url 'consultorio:user_list' %}"
+              class="sidebar-link flex items-center gap-3 py-3 px-3 rounded-lg {% if 'usuarios' in request.path %}sidebar-active{% endif %}"
+            >
+              <i data-lucide="user-plus" class="w-5 h-5"></i
+              ><span>Usuarios</span>
+            </a>
+            <a
+              href="{% url 'consultorio:documentopaciente_list' %}"
+              class="sidebar-link flex items-center gap-3 py-3 px-3 rounded-lg {% if 'documentos' in request.path %}sidebar-active{% endif %}"
+            >
+              <i data-lucide="file-text" class="w-5 h-5"></i
+              ><span>Documentos</span>
+            </a>
+            <a
+              href="{% url 'consultorio:cita_list' %}"
+              class="sidebar-link flex items-center gap-3 py-3 px-3 rounded-lg {% if 'citas' in request.path %}sidebar-active{% endif %}"
+            >
+              <i data-lucide="calendar-clock" class="w-5 h-5"></i
+              ><span>Citas</span>
+            </a>
+            <a
+              href="{% url 'consultorio:historialcambios_list' %}"
+              class="sidebar-link flex items-center gap-3 py-3 px-3 rounded-lg {% if 'historiales' in request.path %}sidebar-active{% endif %}"
+            >
+              <i data-lucide="history" class="w-5 h-5"></i
+              ><span>Historial</span>
+            </a>
+            <a
+              href="{% url 'consultorio:consentimiento_list' %}"
+              class="sidebar-link flex items-center gap-3 py-3 px-3 rounded-lg {% if 'consentimientos' in request.path %}sidebar-active{% endif %}"
+            >
+              <i data-lucide="pen-line" class="w-5 h-5"></i
+              ><span>Consentimientos</span>
+            </a>
+          </div>
+          <div class="mt-6 border-t border-gray-200 pt-4">
+            <h3
+              class="text-xs text-gray-400 uppercase tracking-wider mb-2 ml-2"
+            >
+              Marketing
+            </h3>
+            <a
+              href="{% url 'consultorio:pacientepotencial_list' %}"
+              class="sidebar-link flex items-center gap-3 py-3 px-3 rounded-lg {% if 'marketing/potenciales' in request.path %}sidebar-active{% endif %}"
+            >
+              <i data-lucide="user-search" class="w-5 h-5"></i
+              ><span>Potenciales</span>
+            </a>
+            <a
+              href="{% url 'consultorio:interaccionmarketing_list' %}"
+              class="sidebar-link flex items-center gap-3 py-3 px-3 rounded-lg {% if 'marketing/interacciones' in request.path %}sidebar-active{% endif %}"
+            >
+              <i data-lucide="phone-forwarded" class="w-5 h-5"></i
+              ><span>Interacciones</span>
+            </a>
+            <a
+              href="{% url 'consultorio:redsocial_list' %}"
+              class="sidebar-link flex items-center gap-3 py-3 px-3 rounded-lg {% if 'marketing/redes' in request.path %}sidebar-active{% endif %}"
+            >
+              <i data-lucide="bar-chart-3" class="w-5 h-5"></i
+              ><span>Redes</span>
+            </a>
+            <a
+              href="{% url 'consultorio:botwhatsappmensaje_list' %}"
+              class="sidebar-link flex items-center gap-3 py-3 px-3 rounded-lg {% if 'marketing/botwhatsapp' in request.path %}sidebar-active{% endif %}"
+            >
+              <i data-lucide="message-circle" class="w-5 h-5"></i
+              ><span>WhatsApp</span>
+            </a>
+            <a
+              href="{% url 'consultorio:calendariocumpleanos_list' %}"
+              class="sidebar-link flex items-center gap-3 py-3 px-3 rounded-lg {% if 'marketing/cumpleanos' in request.path %}sidebar-active{% endif %}"
+            >
+              <i data-lucide="gift" class="w-5 h-5"></i><span>Cumpleaños</span>
+            </a>
+          </div>
+        </nav>
+        <!-- Indicador de scroll abajo -->
+        <div id="scroll-indicator" class="flex justify-center -mt-2">
+          <i
+            data-lucide="chevron-down"
+            class="w-5 h-5 text-gray-400 animate-bounce"
+          ></i>
+        </div>
+
+        {% if not user.is_authenticated %}
+        <div class="mt-auto p-4">
+          <a
+            href="{% url 'login' %}"
+            class="app-btn-primary w-full text-center flex items-center justify-center gap-2 py-2 rounded-lg"
+          >
+            <i data-lucide="log-in" class="w-5 h-5"></i> Iniciar sesión
+          </a>
+        </div>
+        {% endif %}
+      </aside>
+
+      <!-- Main content -->
+      <main class="flex-1 overflow-auto main-content-offset">
+        {% block content %}
+        <!-- El contenido específico de cada vista irá aquí -->
+        {% endblock %}
+      </main>
+    </div>
+
+    <!-- Footer (outside main-layout-container to span full width) -->
+    <footer
+      class="text-sm text-text-main py-4 mt-auto"
+      style="
+        border-top: none;
+        text-align: left;
+        padding-left: calc(16rem + 20px + 5px);
+      "
+    >
+      &copy; {{ now|date:"Y" }} Vitalis PRM · Todos los derechos reservados
+    </footer>
+
+    <!-- Loading overlay -->
+    <div
+      id="loading-overlay"
+      class="hidden fixed inset-0 bg-white bg-opacity-75 flex items-center justify-center z-50"
+    >
+      <svg viewBox="0 0 24 24" class="text-primary animate-spin w-8 h-8">
+        <circle
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          stroke-width="4"
+          fill="none"
+        />
+        <path
+          d="M4 12a8 8 0 018-8"
+          stroke="#6366F1"
+          stroke-width="4"
+          fill="none"
+        />
+      </svg>
+    </div>
+
+    <script>
+      lucide.createIcons();
+
+      function toggleUserDropdown() {
+        const dropdown = document.getElementById("user-dropdown");
+        dropdown.classList.toggle("hidden");
+      }
+
+      window.addEventListener("click", function (e) {
+        const dropdown = document.getElementById("user-dropdown");
+        const button = document.getElementById("user-menu-btn");
+        if (
+          dropdown &&
+          !dropdown.contains(e.target) &&
+          !button.contains(e.target)
+        ) {
+          dropdown.classList.add("hidden");
+        }
+      });
+
+      document.querySelectorAll("form").forEach((form) => {
+        form.addEventListener("submit", () => {
+          document.getElementById("loading-overlay").classList.remove("hidden");
+        });
+      });
+
+      // Eliminar alternancia de colores en sidebar
+      document.addEventListener("DOMContentLoaded", function () {
+        const sidebarLinks = document.querySelectorAll(".sidebar-link");
+        sidebarLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            sidebarLinks.forEach((l) => {
+              l.classList.remove("sidebar-active");
+            });
+            link.classList.add("sidebar-active");
+          });
+        });
+      });
+
+      // Mostrar u ocultar el indicador de scroll en el sidebar
+      const scrollContainer = document.getElementById("sidebar-scroll");
+      const scrollIndicator = document.getElementById("scroll-indicator");
+
+      function updateScrollIndicator() {
+        const isScrollable =
+          scrollContainer.scrollHeight > scrollContainer.clientHeight;
+        const isAtBottom =
+          scrollContainer.scrollTop + scrollContainer.clientHeight >=
+          scrollContainer.scrollHeight - 1;
+        if (isScrollable && !isAtBottom) {
+          scrollIndicator.style.display = "flex";
+        } else {
+          scrollIndicator.style.display = "none";
+        }
+      }
+
+      scrollContainer.addEventListener("scroll", updateScrollIndicator);
+      window.addEventListener("resize", updateScrollIndicator);
+      window.addEventListener("DOMContentLoaded", updateScrollIndicator);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,222 @@
+[
+  {
+    "model": "consultorio.profesional",
+    "pk": 1,
+    "fields": {
+      "nombre_completo": "Andrea Torres Mendoza",
+      "numero_colegiado": "COL-10234",
+      "especialidad_principal": "Psicólogo Clínico",
+      "email_profesional": "andrea.torres@prm.com",
+      "horario_atencion": "Lunes, Miércoles y Viernes 9am-2pm"
+    }
+  },
+  {
+    "model": "consultorio.profesional",
+    "pk": 2,
+    "fields": {
+      "nombre_completo": "Miguel Castillo Ríos",
+      "numero_colegiado": "COL-20456",
+      "especialidad_principal": "Terapeuta de Pareja",
+      "email_profesional": "miguel.castillo@prm.com",
+      "horario_atencion": "Martes y Jueves 10am-6pm"
+    }
+  },
+  {
+    "model": "consultorio.profesional",
+    "pk": 3,
+    "fields": {
+      "nombre_completo": "Paula Díaz Bravo",
+      "numero_colegiado": "COL-30987",
+      "especialidad_principal": "Psicólogo Infanto-Juvenil",
+      "email_profesional": "paula.diaz@prm.com",
+      "horario_atencion": "Lunes a Viernes 8am-1pm"
+    }
+  },
+  {
+    "model": "consultorio.profesional",
+    "pk": 4,
+    "fields": {
+      "nombre_completo": "Javier Herrera Serrano",
+      "numero_colegiado": "COL-41235",
+      "especialidad_principal": "Psicólogo Organizacional",
+      "email_profesional": "javier.herrera@prm.com",
+      "horario_atencion": "Lunes a Viernes 2pm-7pm"
+    }
+  },
+  {
+    "model": "consultorio.profesional",
+    "pk": 5,
+    "fields": {
+      "nombre_completo": "Valentina Suárez Navarro",
+      "numero_colegiado": "COL-52341",
+      "especialidad_principal": "Psicólogo Clínico",
+      "email_profesional": "valentina.suarez@prm.com",
+      "horario_atencion": "Martes y Jueves 8am-12pm"
+    }
+  },
+  {
+    "model": "consultorio.profesional",
+    "pk": 6,
+    "fields": {
+      "nombre_completo": "Santiago León Rosales",
+      "numero_colegiado": "COL-63412",
+      "especialidad_principal": "Neuropsicólogo",
+      "email_profesional": "santiago.leon@prm.com",
+      "horario_atencion": "Lunes y Miércoles 3pm-7pm"
+    }
+  },
+  {
+    "model": "consultorio.profesional",
+    "pk": 7,
+    "fields": {
+      "nombre_completo": "Camila Herrera Sánchez",
+      "numero_colegiado": "COL-70001",
+      "especialidad_principal": "Psicólogo Organizacional",
+      "email_profesional": "camila.herrera@prm.com",
+      "horario_atencion": "Lunes a Viernes 8am-5pm"
+    }
+  },
+  {
+    "model": "consultorio.profesional",
+    "pk": 8,
+    "fields": {
+      "nombre_completo": "Martina Bravo Serrano",
+      "numero_colegiado": "COL-80001",
+      "especialidad_principal": "Psicólogo Clínico",
+      "email_profesional": "martina.bravo@prm.com",
+      "horario_atencion": "Lunes a Viernes 8am-5pm"
+    }
+  },
+  {
+    "model": "consultorio.profesional",
+    "pk": 9,
+    "fields": {
+      "nombre_completo": "Joaquín Méndez Guzmán",
+      "numero_colegiado": "COL-90001",
+      "especialidad_principal": "Psicólogo Organizacional",
+      "email_profesional": "joaquin.mendez@prm.com",
+      "horario_atencion": "Lunes a Viernes 8am-5pm"
+    }
+  },
+  {
+    "model": "consultorio.profesional",
+    "pk": 10,
+    "fields": {
+      "nombre_completo": "Patricia León Mendoza",
+      "numero_colegiado": "COL-100001",
+      "especialidad_principal": "Psicólogo Infanto-Juvenil",
+      "email_profesional": "patricia.leon@prm.com",
+      "horario_atencion": "Lunes a Viernes 8am-5pm"
+    }
+  },
+  {
+    "model": "consultorio.profesional",
+    "pk": 11,
+    "fields": {
+      "nombre_completo": "Lucía Ramírez Ortega",
+      "numero_colegiado": "COL-110001",
+      "especialidad_principal": "Psicólogo Clínico",
+      "email_profesional": "lucia.ramirez@prm.com",
+      "horario_atencion": "Martes y Jueves 9am-1pm"
+    }
+  },
+  {
+    "model": "consultorio.profesional",
+    "pk": 12,
+    "fields": {
+      "nombre_completo": "Carlos Paredes Silva",
+      "numero_colegiado": "COL-120001",
+      "especialidad_principal": "Neuropsicólogo",
+      "email_profesional": "carlos.paredes@prm.com",
+      "horario_atencion": "Lunes a Viernes 10am-4pm"
+    }
+  },
+  {
+    "model": "consultorio.profesional",
+    "pk": 13,
+    "fields": {
+      "nombre_completo": "Elena Vargas Soto",
+      "numero_colegiado": "COL-130001",
+      "especialidad_principal": "Terapeuta de Pareja",
+      "email_profesional": "elena.vargas@prm.com",
+      "horario_atencion": "Miércoles y Viernes 2pm-7pm"
+    }
+  },
+  {
+    "model": "consultorio.profesional",
+    "pk": 14,
+    "fields": {
+      "nombre_completo": "Gabriel Molina Peña",
+      "numero_colegiado": "COL-140001",
+      "especialidad_principal": "Psicólogo Infanto-Juvenil",
+      "email_profesional": "gabriel.molina@prm.com",
+      "horario_atencion": "Lunes y Jueves 8am-12pm"
+    }
+  },
+  {
+    "model": "consultorio.profesional",
+    "pk": 15,
+    "fields": {
+      "nombre_completo": "Marina López Cordero",
+      "numero_colegiado": "COL-150001",
+      "especialidad_principal": "Psicólogo Organizacional",
+      "email_profesional": "marina.lopez@prm.com",
+      "horario_atencion": "Martes y Viernes 1pm-6pm"
+    }
+  },
+  {
+    "model": "consultorio.profesional",
+    "pk": 16,
+    "fields": {
+      "nombre_completo": "Ricardo Torres Salas",
+      "numero_colegiado": "COL-160001",
+      "especialidad_principal": "Psicólogo Clínico",
+      "email_profesional": "ricardo.torres@prm.com",
+      "horario_atencion": "Lunes a Miércoles 8am-2pm"
+    }
+  },
+  {
+    "model": "consultorio.profesional",
+    "pk": 17,
+    "fields": {
+      "nombre_completo": "Natalia Guzmán Rivas",
+      "numero_colegiado": "COL-170001",
+      "especialidad_principal": "Neuropsicólogo",
+      "email_profesional": "natalia.guzman@prm.com",
+      "horario_atencion": "Jueves y Viernes 10am-3pm"
+    }
+  },
+  {
+    "model": "consultorio.profesional",
+    "pk": 18,
+    "fields": {
+      "nombre_completo": "Tomás Castillo Pino",
+      "numero_colegiado": "COL-180001",
+      "especialidad_principal": "Psicólogo Infanto-Juvenil",
+      "email_profesional": "tomas.castillo@prm.com",
+      "horario_atencion": "Lunes a Viernes 9am-1pm"
+    }
+  },
+  {
+    "model": "consultorio.profesional",
+    "pk": 19,
+    "fields": {
+      "nombre_completo": "Isabel Peña Morales",
+      "numero_colegiado": "COL-190001",
+      "especialidad_principal": "Terapeuta de Pareja",
+      "email_profesional": "isabel.pena@prm.com",
+      "horario_atencion": "Martes y Jueves 2pm-7pm"
+    }
+  },
+  {
+    "model": "consultorio.profesional",
+    "pk": 20,
+    "fields": {
+      "nombre_completo": "Felipe Navarro Soto",
+      "numero_colegiado": "COL-200001",
+      "especialidad_principal": "Psicólogo Organizacional",
+      "email_profesional": "felipe.navarro@prm.com",
+      "horario_atencion": "Lunes a Viernes 8am-5pm"
+    }
+  }
+]

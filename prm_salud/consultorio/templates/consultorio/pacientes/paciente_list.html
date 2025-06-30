@@ -1,0 +1,82 @@
+{% extends 'consultorio/base.html' %}
+{% load static %}
+
+{% block title %}
+Pacientes - Vitalis PRM
+{% endblock %}
+
+{% block content %}
+<div class="text-main font-['Montserrat'] pt-2.5 mb-2.5">
+  <!-- Cabecera de sección -->
+  <div class="flex items-center justify-between flex-wrap gap-4 mb-5">
+    <h1 class="dashboard-section-title text-2xl font-bold text-[#1d7b16] leading-none py-0.5">
+      Pacientes
+    </h1>
+    {% if puede_crear %}
+    <a href="{% url 'consultorio:paciente_create' %}" class="text-sm font-medium px-4 py-2 rounded-lg shadow transition-colors duration-200" style="background: var(--primary); color: var(--text-white); border: none">
+      + Registrar Paciente
+    </a>
+    {% endif %}
+  </div>
+
+  <!-- Tabla de pacientes -->
+  <div class="bg-white shadow-sm rounded-xl border border-border-light overflow-x-auto">
+    <table class="w-full text-sm text-left text-gray-700" style="border-collapse: separate; border-spacing: 0">
+      <thead class="text-gray-500 uppercase text-xs tracking-wider select-none bg-white">
+        <tr>
+          <th class="px-2 py-2 text-left font-semibold border-b border-gray-200 first:rounded-tl-xl last:rounded-tr-xl">Nombre</th>
+          <th class="px-2 py-2 text-center font-semibold border-b border-gray-200">Cédula</th>
+          <th class="px-2 py-2 text-center font-semibold border-b border-gray-200">Fecha de nacimiento</th>
+          <th class="px-2 py-2 text-center font-semibold border-b border-gray-200">Edad</th>
+          <th class="px-2 py-2 text-center font-semibold border-b border-gray-200">Género</th>
+          <th class="px-2 py-2 text-center font-semibold border-b border-gray-200 first:rounded-tr-xl last:rounded-tr-xl">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for paciente in pacientes %}
+        <tr class="bg-white hover:bg-[#F1F8E9] transition-colors duration-200">
+          <td class="px-2 py-2 text-left align-middle border-b border-gray-200 break-words">
+            {{ paciente.nombres }} {{ paciente.apellidos }}
+          </td>
+          <td class="px-2 py-2 text-center align-middle border-b border-gray-200 break-words">
+            {{ paciente.cedula_identidad }}
+          </td>
+          <td class="px-2 py-2 text-center align-middle border-b border-gray-200 break-words">
+            {% if paciente.fecha_nacimiento %}
+              {{ paciente.fecha_nacimiento|date:"d/m/Y" }}
+            {% else %}
+              <span class="text-gray-400">N/D</span>
+            {% endif %}
+          </td>
+          <td class="px-2 py-2 text-center align-middle border-b border-gray-200 break-words">
+            {% if paciente.edad %}
+              {{ paciente.edad }}
+            {% else %}
+              <span class="text-gray-400">N/D</span>
+            {% endif %}
+          </td>
+          <td class="px-2 py-2 text-center align-middle border-b border-gray-200 break-words">
+            <span class="inline-block bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full select-none">
+              {{ paciente.get_genero_display }}
+            </span>
+          </td>
+          <td class="px-2 py-2 text-center align-middle border-b border-gray-200 break-words">
+            <div class="flex gap-2 justify-center items-center">
+              <a href="{% url 'consultorio:paciente_detail' paciente.id_paciente %}" class="cursor-pointer text-sm font-medium transition-colors duration-200 text-primary">Ver</a>
+              <a href="{% url 'consultorio:paciente_update' paciente.id_paciente %}" class="cursor-pointer text-sm font-medium transition-colors duration-200 text-primary">Editar</a>
+              <a href="{% url 'consultorio:paciente_delete' paciente.id_paciente %}" class="cursor-pointer text-sm font-medium transition-colors duration-200 text-red-600">Eliminar</a>
+            </div>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="6" class="text-center py-8 text-gray-400">
+            No hay pacientes registrados.
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

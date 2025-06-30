@@ -1,0 +1,21 @@
+{% extends 'consultorio/base.html' %} {% block content %}
+<h2>Detalle de Mensaje de Bot de WhatsApp</h2>
+<ul>
+  <li><strong>ID:</strong> {{ botwhatsappmensaje.id }}</li>
+  <li><strong>Mensaje:</strong> {{ botwhatsappmensaje.texto }}</li>
+  <li><strong>Fecha de envío:</strong> {{ botwhatsappmensaje.fecha_envio }}</li>
+</ul>
+<a
+  href="{% url 'botwhatsappmensaje_update' botwhatsappmensaje.pk %}"
+  class="btn btn-primary"
+  >Editar</a
+>
+<a
+  href="{% url 'botwhatsappmensaje_delete' botwhatsappmensaje.pk %}"
+  class="btn btn-danger"
+  >Eliminar</a
+>
+<a href="{% url 'botwhatsappmensaje_list' %}" class="btn btn-secondary"
+  >Volver al listado</a
+>
+{% endblock %}

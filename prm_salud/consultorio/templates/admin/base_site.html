@@ -1,0 +1,21 @@
+{% extends "admin/base.html" %} {% load static %} {% block title %}Admin-Vitalis{% endblock %} {% block branding %}
+<div style="display: flex; align-items: center; gap: 1rem; padding: 1.2rem 0">
+  <img
+    src="{% static 'consultorio/img/PRMlogo.png' %}"
+    alt="Logo PRM"
+    style="height: 48px"
+  />
+  <h1
+    id="site-name"
+    style="font-size: 2rem; font-weight: 700; color: #fff; margin: 0"
+  >
+    Vitalis PRM
+  </h1>
+</div>
+{% endblock %} {% block extrastyle %}
+<link
+  rel="icon"
+  type="image/png"
+  href="{% static 'consultorio/img/PRM.png' %}"
+/>
+{{ block.super }} {% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'consultorio/base.html' %}
+{% load static %}
+
+{% block title %}
+Planes Terapéuticos - PRM
+{% endblock %}
+
+{% block header %}
+Planes Terapéuticos
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+  <div class="aurora-card">
+    <div class="flex items-center justify-between mb-4">
+      <h1 class="text-2xl font-bold">Listado de Planes Terapéuticos</h1>
+      {% if puede_crear %}
+      <a href="{% url 'consultorio:plan_create' %}" class="aurora-btn">
+        Registrar Plan
+      </a>
+      {% endif %}
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200 text-sm">
+        <thead>
+          <tr>
+            <th class="px-6 py-3 text-left font-semibold uppercase text-gray-600">
+              Paciente
+            </th>
+            <th class="px-6 py-3 text-left font-semibold uppercase text-gray-600">
+              Fecha
+            </th>
+            <th class="px-6 py-3 text-left font-semibold uppercase text-gray-600">
+              Acciones
+            </th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          {% for plan in planes %}
+          <tr class="hover:bg-gray-50 transition">
+            <td class="px-6 py-4">
+              {{ plan.paciente.nombres }} {{ plan.paciente.apellidos }}
+            </td>
+            <td class="px-6 py-4">
+              <span class="badge badge-warning">
+                {{ plan.fecha_registro|date:'d/m/Y' }}
+              </span>
+            </td>
+            <td class="px-6 py-4">
+              <div class="flex flex-wrap gap-2">
+                <a href="{% url 'consultorio:plan_detail' plan.id %}"
+                   class="aurora-btn"
+                   style="background-color: #f3f4f6; color: var(--primary)">
+                  Ver
+                </a>
+                {% if puede_editar %}
+                <a href="{% url 'consultorio:plan_update' plan.id %}" class="aurora-btn">
+                  Editar
+                </a>
+                {% endif %}
+                {% if puede_eliminar %}
+                <a href="{% url 'consultorio:plan_delete' plan.id %}"
+                   class="aurora-btn bg-red-500 hover:bg-red-600">
+                  Eliminar
+                </a>
+                {% endif %}
+              </div>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="3" class="text-center py-8 text-gray-500">
+              No hay planes registrados.
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

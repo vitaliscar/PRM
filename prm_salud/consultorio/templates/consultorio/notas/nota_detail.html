@@ -1,0 +1,43 @@
+{% extends 'consultorio/base.html' %}
+
+{% block title %}
+Detalle de Nota - PRM
+{% endblock %}
+
+{% block header %}
+Detalle de Nota
+{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto card mt-8 bg-white shadow-sm rounded-xl p-6">
+  <h1 class="text-2xl font-bold mb-6">Nota de Sesión</h1>
+  
+  <div class="mb-4 flex flex-wrap gap-2">
+    <span class="badge badge-warning">
+      Sesión: {{ nota.sesion.fecha_sesion|date:'d/m/Y' }}
+    </span>
+    <span class="badge">
+      Paciente: {{ nota.sesion.paciente.nombres }} {{ nota.sesion.paciente.apellidos }}
+    </span>
+  </div>
+
+  <div class="mb-4 text-gray-700 leading-relaxed">
+    <p><strong>Subjetivo:</strong> {{ nota.subjetivo }}</p>
+    <p><strong>Objetivo:</strong> {{ nota.objetivo }}</p>
+    <p><strong>Análisis:</strong> {{ nota.analisis }}</p>
+    <p><strong>Plan:</strong> {{ nota.plan }}</p>
+  </div>
+
+  <div class="flex gap-2 mt-6">
+    <a href="{% url 'consultorio:nota_update' nota.id %}" class="btn-primary">
+      Editar
+    </a>
+    <a href="{% url 'consultorio:nota_delete' nota.id %}" class="btn-primary" style="background: var(--danger);">
+      Eliminar
+    </a>
+    <a href="{% url 'consultorio:paciente_detail' nota.sesion.paciente.id_paciente %}" class="btn-primary" style="background: var(--bg-light); color: var(--text-main);">
+      Volver
+    </a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'consultorio/base.html' %} {% block content %}
+<h2>Historial de Cambios</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Modelo</th>
+      <th>ID Objeto</th>
+      <th>Usuario</th>
+      <th>Fecha</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for historial in historiales %}
+    <tr>
+      <td>{{ historial.modelo }}</td>
+      <td>{{ historial.objeto_id }}</td>
+      <td>{{ historial.usuario }}</td>
+      <td>{{ historial.fecha }}</td>
+      <td>
+        <a href="{% url 'consultorio:historialcambios_detail' historial.pk %}"
+          >Ver</a
+        >
+        |
+        <a href="{% url 'consultorio:historialcambios_update' historial.pk %}"
+          >Editar</a
+        >
+        |
+        <a href="{% url 'consultorio:historialcambios_delete' historial.pk %}"
+          >Eliminar</a
+        >
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="5">No hay registros.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<a
+  href="{% url 'consultorio:historialcambios_create' %}"
+  class="btn btn-primary"
+  >Nuevo registro</a
+>
+{% endblock %}

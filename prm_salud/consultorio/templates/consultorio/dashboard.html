@@ -1,0 +1,567 @@
+{% extends 'consultorio/base.html' %} {% load static %} {% block title %}Vitalis
+PRM - Dashboard{% endblock %} {% block content %}
+<div class="px-2 pb-10 bg-bg-light text-main font-['Inter']">
+  <!-- CABECERA PRINCIPAL DEL CONTENIDO -->
+  <div class="flex items-center justify-between flex-wrap gap-4 mb-8">
+    <!-- Selector de gráficos alineado a la derecha -->
+    <div class="flex-1 flex justify-end">
+      <div class="flex items-center gap-3 flex-wrap">
+        <!-- Botón de mostrar gráficos eliminado -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Métricas principales -->
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3"
+  >
+    <div
+      class="app-card metric-card p-4 bg-white text-main rounded-xl shadow-md"
+    >
+      <h3 class="text-base font-semibold text-gray-800 mb-2">
+        Total Pacientes
+      </h3>
+      <p class="text-3xl font-extrabold text-indigo-600">
+        {{ total_pacientes }}
+      </p>
+      <span
+        class="badge badge-success mt-3 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800"
+        >Activos</span
+      >
+    </div>
+    <div
+      class="app-card metric-card p-4 bg-white text-main rounded-xl shadow-md"
+    >
+      <h3 class="text-base font-semibold text-gray-800 mb-2">Sesiones</h3>
+      <p class="text-3xl font-extrabold text-indigo-600">
+        {{ sesiones_realizadas }}
+      </p>
+      <span
+        class="badge badge-info mt-3 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
+        >Este mes</span
+      >
+    </div>
+    <div
+      class="app-card metric-card p-4 bg-white text-main rounded-xl shadow-md"
+    >
+      <h3 class="text-base font-semibold text-gray-800 mb-2">Profesionales</h3>
+      <p class="text-3xl font-extrabold text-indigo-600">
+        {{ total_profesionales }}
+      </p>
+      <span
+        class="badge badge-secondary mt-3 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800"
+        >Equipo</span
+      >
+    </div>
+    <div
+      class="app-card metric-card p-4 bg-white text-main rounded-xl shadow-md"
+    >
+      <h3 class="text-base font-semibold text-gray-800 mb-2">Planes Activos</h3>
+      <p class="text-3xl font-extrabold text-indigo-600">
+        {{ planes_activos }}
+      </p>
+      <span
+        class="badge badge-primary mt-3 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800"
+        >Vigentes</span
+      >
+    </div>
+    <div
+      class="app-card metric-card p-4 bg-white text-main rounded-xl shadow-md"
+    >
+      <h3 class="text-base font-semibold text-gray-800 mb-2">Actividades</h3>
+      <p class="text-3xl font-extrabold text-indigo-600">
+        {{ actividades_pendientes }}
+      </p>
+      <span
+        class="badge badge-warning mt-3 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800"
+        >Programadas</span
+      >
+    </div>
+    <div
+      class="app-card metric-card p-4 bg-white text-main rounded-xl shadow-md"
+    >
+      <h3 class="text-base font-semibold text-gray-800 mb-2">Leads del Mes</h3>
+      <p class="text-3xl font-extrabold text-indigo-600">
+        {{ leads_este_mes }}
+      </p>
+      <span
+        class="badge badge-info mt-3 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
+      >
+        {{ leads_convertidos }} convertidos
+      </span>
+    </div>
+    <div
+      class="app-card metric-card p-4 bg-white text-main rounded-xl shadow-md"
+    >
+      <h3 class="text-base font-semibold text-gray-800 mb-2">Instagram</h3>
+      <p class="text-3xl font-extrabold text-indigo-600">
+        {{ seguidores_instagram }}
+      </p>
+      <span
+        class="badge badge-secondary mt-3 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800"
+      >
+        Social
+      </span>
+    </div>
+    <div
+      class="app-card metric-card p-4 bg-white text-main rounded-xl shadow-md"
+    >
+      <h3 class="text-base font-semibold text-gray-800 mb-2">
+        Interacciones Totales
+      </h3>
+      <p class="text-3xl font-extrabold text-indigo-600">
+        {{ interacciones_totales }}
+      </p>
+      <span
+        class="badge badge-primary mt-3 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800"
+      >
+        Marketing
+      </span>
+    </div>
+  </div>
+
+  <!-- Gráficos -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 mt-6" id="charts-grid">
+    <div
+      id="ageChartContainer"
+      class="app-card p-6 bg-white rounded-xl shadow-md"
+      style="display: block"
+    >
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">
+        Pacientes por Rango de Edad
+      </h3>
+      <canvas id="pacientesPorEdadChart"></canvas>
+    </div>
+
+    <div
+      id="sessionTypeChartContainer"
+      class="app-card p-6 bg-white rounded-xl shadow-md"
+      style="display: block"
+    >
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">
+        Sesiones por Tipo
+      </h3>
+      <canvas id="sesionesPorTipoChart"></canvas>
+    </div>
+
+    <div
+      id="patientStatusChartContainer"
+      class="app-card p-6 bg-white rounded-xl shadow-md"
+      style="display: block"
+    >
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">
+        Estado de Pacientes
+      </h3>
+      <canvas id="estadoPacientesChart"></canvas>
+    </div>
+
+    <div
+      id="referralSourceChartContainer"
+      class="app-card p-6 bg-white rounded-xl shadow-md"
+      style="display: block"
+    >
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">
+        Pacientes por Fuente de Referencia
+      </h3>
+      <canvas id="fuenteReferenciaChart"></canvas>
+    </div>
+
+    {% if user_profile.is_psicologo or user_profile.is_admin %}
+    <div
+      id="diagnosisChartContainer"
+      class="app-card p-6 lg:col-span-2 bg-white rounded-xl shadow-md"
+      style="display: block"
+    >
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">
+        Prevalencia de Diagnósticos (DSM-5)
+      </h3>
+      <canvas id="diagnosticosChart"></canvas>
+    </div>
+    {% endif %}
+
+    <div
+      id="marketingSourceChartContainer"
+      class="app-card p-6 bg-white rounded-xl shadow-md"
+      style="display: block"
+    >
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">Origen de Leads</h3>
+      <canvas id="marketingChart"></canvas>
+    </div>
+  </div>
+</div>
+{% endblock content %} {% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  // Configure Tailwind CSS to use 'Inter' font
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ["Inter", "sans-serif"],
+        },
+        colors: {
+          "bg-light": "#F8F8F8", // Define a light background color
+          main: "#333333", // Define a main text color
+          primary: "#4C51BF", // Example primary color, adjust as needed
+          card: "#FFFFFF", // Card background color
+        },
+      },
+    },
+  };
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // Console log to confirm script execution
+    console.log("DOM Content Loaded - Script started.");
+
+    // Función segura para parsear JSON
+    function safeParse(jsonStr) {
+      try {
+        const parsed = JSON.parse(jsonStr || "[]"); // Handle empty string by defaulting to "[]"
+        console.log("Successfully parsed JSON:", parsed);
+        return parsed;
+      } catch (e) {
+        console.error("JSON parse error:", e, "Original string:", jsonStr);
+        return [];
+      }
+    }
+
+    // Parsear datos JSON desde contexto Django
+    // Ensure Django context variables are properly rendered and safe for JSON parsing
+    const pacientesPorEdadData = safeParse(
+      `{{ pacientes_por_edad_data|escapejs }}`
+    );
+    const sesionesPorTipoData = safeParse(
+      `{{ sesiones_por_tipo_data|escapejs }}`
+    );
+    const estadoPacientesData = safeParse(
+      `{{ estado_pacientes_data|escapejs }}`
+    );
+    const fuenteReferenciaData = safeParse(
+      `{{ fuente_referencia_data|escapejs }}`
+    );
+    const diagnosticosData = safeParse(
+      `{{ diagnosticos_data|default:'[]'|escapejs }}`
+    );
+    const marketingData = safeParse(`{{ marketing_data|escapejs }}`);
+
+    // Colores para gráficos (Monday.com style)
+    const CHART_COLORS = [
+      "#61BD4F", // Green
+      "#FFAB00", // Orange
+      "#EB5A46", // Red
+      "#0079BF", // Blue
+      "#CD5A91", // Pink
+      "#5BA4CF", // Light Blue
+      "#FF9F40", // Dark Orange
+      "#36A2EB", // Dodger Blue
+      "#FFCD56", // Yellow
+      "#4BC0C0", // Cyan
+      "#9966FF", // Purple
+      "#C9CBCE", // Grey
+    ];
+
+    // Almacenar instancias de gráficos para controlar destrucción
+    const chartInstances = {};
+
+    // Función para renderizar gráficos
+    function renderChart(
+      canvasId,
+      data,
+      type,
+      labelField,
+      valueField,
+      titleText
+    ) {
+      const ctx = document.getElementById(canvasId);
+      if (!ctx) {
+        console.warn(`Canvas element with ID '${canvasId}' not found.`);
+        return;
+      }
+      if (!data || data.length === 0) {
+        console.warn(`No data provided for chart '${canvasId}'.`);
+        return;
+      }
+
+      // Destruir gráfico previo si existe
+      if (chartInstances[canvasId]) {
+        chartInstances[canvasId].destroy();
+        console.log(`Destroyed previous chart instance for '${canvasId}'.`);
+      }
+
+      const isPie = type === "pie";
+
+      chartInstances[canvasId] = new Chart(ctx, {
+        type: type,
+        data: {
+          labels: data.map((item) => item[labelField]),
+          datasets: [
+            {
+              label: titleText,
+              data: data.map((item) => item[valueField]),
+              backgroundColor: CHART_COLORS.slice(0, data.length),
+              borderColor: CHART_COLORS.slice(0, data.length),
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: isPie
+            ? undefined
+            : {
+                y: { beginAtZero: true, ticks: { precision: 0 } },
+                x: { grid: { display: false } },
+              },
+          plugins: {
+            legend: {
+              display: isPie || data.length > 5,
+              position: "right",
+              labels: { font: { family: "Inter", size: 12 }, color: "#374151" },
+            },
+            tooltip: {
+              callbacks: {
+                label: function (context) {
+                  let label = context.label || "";
+                  if (label) label += ": ";
+                  label += context.parsed?.y ?? context.parsed?.r ?? "";
+                  if (isPie) {
+                    const total = context.dataset.data.reduce(
+                      (a, b) => a + b,
+                      0
+                    );
+                    const percent = ((context.parsed.r / total) * 100).toFixed(
+                      1
+                    );
+                    label += ` (${percent}%)`;
+                  }
+                  return label;
+                },
+              },
+              bodyFont: { family: "Inter" },
+              titleFont: { family: "Inter" },
+            },
+          },
+        },
+      });
+      console.log(`Chart '${canvasId}' rendered successfully.`);
+    }
+
+    // Configuración de gráficos y checkbox mapping
+    const chartConfigs = [
+      {
+        id: "showAgeChart",
+        containerId: "ageChartContainer",
+        canvasId: "pacientesPorEdadChart",
+        data: pacientesPorEdadData,
+        type: "bar",
+        labelField: "name",
+        valueField: "value",
+        titleText: "Pacientes por Rango de Edad",
+      },
+      {
+        id: "showSessionTypeChart",
+        containerId: "sessionTypeChartContainer",
+        canvasId: "sesionesPorTipoChart",
+        data: sesionesPorTipoData,
+        type: "pie",
+        labelField: "name",
+        valueField: "value",
+        titleText: "Sesiones por Tipo",
+      },
+      {
+        id: "showPatientStatusChart",
+        containerId: "patientStatusChartContainer",
+        canvasId: "estadoPacientesChart",
+        data: estadoPacientesData,
+        type: "bar",
+        labelField: "name",
+        valueField: "value",
+        titleText: "Estado de Pacientes",
+      },
+      {
+        id: "showReferralSourceChart",
+        containerId: "referralSourceChartContainer",
+        canvasId: "fuenteReferenciaChart",
+        data: fuenteReferenciaData,
+        type: "pie",
+        labelField: "name",
+        valueField: "value",
+        titleText: "Pacientes por Fuente de Referencia",
+      },
+      {
+        id: "showDiagnosisChart",
+        containerId: "diagnosisChartContainer",
+        canvasId: "diagnosticosChart",
+        data: diagnosticosData,
+        type: "bar",
+        labelField: "name",
+        valueField: "value",
+        titleText: "Prevalencia de Diagnósticos (DSM-5)",
+      },
+      {
+        id: "showMarketingSourcesChart",
+        containerId: "marketingSourceChartContainer",
+        canvasId: "marketingChart",
+        data: marketingData,
+        type: "pie",
+        labelField: "name",
+        valueField: "value",
+        titleText: "Origen de Leads",
+      },
+    ];
+
+    // Elementos del selector
+    const selectButton = document.getElementById("chart-select-button");
+    const selectDropdown = document.getElementById("chart-select-dropdown");
+    const selectOptions = selectDropdown
+      ? selectDropdown.querySelectorAll('input[type="checkbox"]')
+      : [];
+    const selectedCountSpan = document.getElementById("selected-charts-count");
+    const selectAllBtn = document.getElementById("select-all-charts");
+    const deselectAllBtn = document.getElementById("deselect-all-charts");
+    const chartsGrid = document.getElementById("charts-grid");
+    const dropdownArrowIcon = document.getElementById("dropdown-arrow-icon");
+
+    // Console logs to verify elements are found
+    if (!selectButton) console.error("Error: #chart-select-button not found.");
+    if (!selectDropdown)
+      console.error("Error: #chart-select-dropdown not found.");
+    if (!selectedCountSpan)
+      console.error("Error: #selected-charts-count not found.");
+    if (!selectAllBtn) console.error("Error: #select-all-charts not found.");
+    if (!deselectAllBtn)
+      console.error("Error: #deselect-all-charts not found.");
+    if (!chartsGrid) console.error("Error: #charts-grid not found.");
+
+    // Función para actualizar visibilidad y contador
+    function updateChartsAndCount() {
+      let selectedCount = 0;
+
+      selectOptions.forEach((checkbox) => {
+        const config = chartConfigs.find((c) => c.id === checkbox.id);
+        if (!config) return;
+
+        const container = document.getElementById(config.containerId);
+        if (!container) {
+          console.warn(
+            `Chart container with ID '${config.containerId}' not found.`
+          );
+          return;
+        }
+
+        if (checkbox.checked) {
+          container.style.display = "block";
+          renderChart(
+            config.canvasId,
+            config.data,
+            config.type,
+            config.labelField,
+            config.valueField,
+            config.titleText
+          );
+          selectedCount++;
+        } else {
+          container.style.display = "none";
+          if (chartInstances[config.canvasId]) {
+            chartInstances[config.canvasId].destroy();
+            chartInstances[config.canvasId] = null;
+          }
+        }
+      });
+
+      selectedCountSpan.textContent = `(${selectedCount})`;
+      const buttonLabel = selectButton.querySelector(
+        ".custom-select-button-label"
+      );
+      if (buttonLabel) {
+        buttonLabel.textContent =
+          selectedCount === 0
+            ? "Mostrar gráficos"
+            : `Gráficos (${selectedCount})`;
+      }
+
+      chartsGrid.style.display = selectedCount === 0 ? "none" : "grid";
+      console.log(`Charts updated. Selected count: ${selectedCount}`);
+    }
+
+    // Eventos
+    if (selectButton) {
+      selectButton.addEventListener("click", (e) => {
+        e.stopPropagation();
+        console.log("Chart select button clicked.");
+        const isOpen = !selectDropdown.classList.contains("hidden");
+
+        if (isOpen) {
+          selectDropdown.classList.add("hidden");
+          selectButton.setAttribute("aria-expanded", "false");
+          dropdownArrowIcon.classList.remove("rotate-180"); // Rotate arrow back
+          console.log("Dropdown is now hidden.");
+        } else {
+          selectDropdown.classList.remove("hidden");
+          selectButton.setAttribute("aria-expanded", "true");
+          dropdownArrowIcon.classList.add("rotate-180"); // Rotate arrow
+          console.log("Dropdown is now visible.");
+          // Accesibilidad: enfocar el primer checkbox
+          const firstOption = selectDropdown.querySelector(
+            'input[type="checkbox"]'
+          );
+          if (firstOption) firstOption.focus();
+        }
+      });
+    }
+
+    if (selectAllBtn) {
+      selectAllBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        console.log("Select All charts clicked.");
+        selectOptions.forEach((cb) => (cb.checked = true));
+        updateChartsAndCount();
+      });
+    }
+
+    if (deselectAllBtn) {
+      deselectAllBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        console.log("Deselect All charts clicked.");
+        selectOptions.forEach((cb) => (cb.checked = false));
+        updateChartsAndCount();
+      });
+    }
+
+    selectOptions.forEach((cb) => {
+      cb.addEventListener("change", updateChartsAndCount);
+    });
+
+    // Cerrar dropdown al click fuera o con Escape
+    document.addEventListener("click", (e) => {
+      if (
+        selectDropdown && // Check if selectDropdown exists
+        !selectDropdown.contains(e.target) &&
+        selectButton && // Check if selectButton exists
+        !selectButton.contains(e.target)
+      ) {
+        if (!selectDropdown.classList.contains("hidden")) {
+          // Only hide if it's currently visible
+          selectDropdown.classList.add("hidden");
+          selectButton.setAttribute("aria-expanded", "false");
+          dropdownArrowIcon.classList.remove("rotate-180");
+          console.log("Closed dropdown by clicking outside.");
+        }
+      }
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !selectDropdown.classList.contains("hidden")) {
+        selectDropdown.classList.add("hidden");
+        selectButton.setAttribute("aria-expanded", "false");
+        dropdownArrowIcon.classList.remove("rotate-180");
+        selectButton.focus();
+      }
+    });
+
+    // Inicializar
+    updateChartsAndCount();
+  });
+</script>
+{% endblock scripts %}

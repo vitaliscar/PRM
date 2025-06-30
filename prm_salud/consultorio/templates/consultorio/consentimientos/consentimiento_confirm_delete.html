@@ -1,0 +1,13 @@
+{% extends 'consultorio/base.html' %} {% block content %}
+<h2>¿Eliminar consentimiento?</h2>
+<p>¿Estás seguro de que deseas eliminar este consentimiento?</p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Eliminar</button>
+  <a
+    href="{% url 'consultorio:consentimiento_list' %}"
+    class="btn btn-secondary"
+    >Cancelar</a
+  >
+</form>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'consultorio/base.html' %} {% block content %}
+<h2>Detalle del Documento</h2>
+<p><strong>Nombre:</strong> {{ documento.nombre }}</p>
+<p><strong>Paciente:</strong> {{ documento.paciente }}</p>
+<p><strong>Fecha de subida:</strong> {{ documento.fecha_subida }}</p>
+<p><strong>Descripción:</strong> {{ documento.descripcion }}</p>
+<p>
+  <a href="{{ documento.archivo.url }}" target="_blank">Descargar archivo</a>
+</p>
+<a
+  href="{% url 'consultorio:documentopaciente_update' documento.pk %}"
+  class="btn btn-primary"
+  >Editar</a
+>
+<a
+  href="{% url 'consultorio:documentopaciente_delete' documento.pk %}"
+  class="btn btn-danger"
+  >Eliminar</a
+>
+<a
+  href="{% url 'consultorio:documentopaciente_list' %}"
+  class="btn btn-secondary"
+  >Volver a la lista</a
+>
+{% endblock %}

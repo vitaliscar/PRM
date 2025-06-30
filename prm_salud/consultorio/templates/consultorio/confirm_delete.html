@@ -1,0 +1,25 @@
+{% extends 'consultorio/base.html' %} {% load static %} {% block title %}
+Confirmar Eliminación - Vitalis PRM {% endblock %} {% block header %} Confirmar
+Eliminación {% endblock %} {% block content %}
+<div class="max-w-xl mx-auto aurora-card text-center">
+  <h1 class="text-2xl font-bold text-red-600 mb-4">¿Eliminar?</h1>
+  <p class="mb-6 text-gray-600">
+    Esta acción no se puede deshacer. ¿Estás seguro que deseas eliminar este
+    elemento?
+  </p>
+  <form method="post">
+    {% csrf_token %}
+    <div class="flex justify-center gap-4 mt-4">
+      <a
+        href="{{ cancel_url|default:'/' }}"
+        class="aurora-btn bg-gray-100 text-gray-700 hover:bg-gray-200"
+      >
+        Cancelar
+      </a>
+      <button type="submit" class="aurora-btn bg-red-500 hover:bg-red-600">
+        Eliminar
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock %}

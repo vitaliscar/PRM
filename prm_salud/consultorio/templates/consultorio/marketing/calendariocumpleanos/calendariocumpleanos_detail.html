@@ -1,0 +1,24 @@
+{% extends 'consultorio/base.html' %} {% block content %}
+<h2>Detalle de Cumpleaños</h2>
+<ul>
+  <li><strong>ID:</strong> {{ calendariocumpleanos.id }}</li>
+  <li><strong>Paciente:</strong> {{ calendariocumpleanos.paciente }}</li>
+  <li>
+    <strong>Fecha de Cumpleaños:</strong> {{
+    calendariocumpleanos.fecha_cumpleanos }}
+  </li>
+</ul>
+<a
+  href="{% url 'calendariocumpleanos_update' calendariocumpleanos.pk %}"
+  class="btn btn-primary"
+  >Editar</a
+>
+<a
+  href="{% url 'calendariocumpleanos_delete' calendariocumpleanos.pk %}"
+  class="btn btn-danger"
+  >Eliminar</a
+>
+<a href="{% url 'calendariocumpleanos_list' %}" class="btn btn-secondary"
+  >Volver al listado</a
+>
+{% endblock %}

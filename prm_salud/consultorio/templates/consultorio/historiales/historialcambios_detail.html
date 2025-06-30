@@ -1,0 +1,23 @@
+{% extends 'consultorio/base.html' %} {% block content %}
+<h2>Detalle del Historial de Cambios</h2>
+<p><strong>Modelo:</strong> {{ historial.modelo }}</p>
+<p><strong>ID Objeto:</strong> {{ historial.objeto_id }}</p>
+<p><strong>Usuario:</strong> {{ historial.usuario }}</p>
+<p><strong>Fecha:</strong> {{ historial.fecha }}</p>
+<p><strong>Cambio:</strong> {{ historial.cambio }}</p>
+<a
+  href="{% url 'consultorio:historialcambios_update' historial.pk %}"
+  class="btn btn-primary"
+  >Editar</a
+>
+<a
+  href="{% url 'consultorio:historialcambios_delete' historial.pk %}"
+  class="btn btn-danger"
+  >Eliminar</a
+>
+<a
+  href="{% url 'consultorio:historialcambios_list' %}"
+  class="btn btn-secondary"
+  >Volver a la lista</a
+>
+{% endblock %}

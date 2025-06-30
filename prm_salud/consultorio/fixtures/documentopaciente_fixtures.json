@@ -1,0 +1,57 @@
+[
+  {
+    "model": "consultorio.documentopaciente",
+    "pk": 1,
+    "fields": {
+      "paciente": "00e83c9c-1b54-4786-8430-dc9c84146751",
+      "nombre": "Consentimiento informado",
+      "archivo": "consentimiento_maria_gonzalez.pdf",
+      "fecha_subida": "2025-06-10T09:00:00",
+      "descripcion": "Documento de consentimiento informado firmado por la paciente."
+    }
+  },
+  {
+    "model": "consultorio.documentopaciente",
+    "pk": 2,
+    "fields": {
+      "paciente": "ec1f1b71-fa71-483c-9760-b342c4ff81cc",
+      "nombre": "Resultados de evaluación inicial",
+      "archivo": "evaluacion_carlos_ramirez.pdf",
+      "fecha_subida": "2025-06-12T11:00:00",
+      "descripcion": "Resultados de la evaluación psicológica inicial."
+    }
+  },
+  {
+    "model": "consultorio.documentopaciente",
+    "pk": 3,
+    "fields": {
+      "paciente": "d4479cf2-d208-48de-8e1e-75ff88a4658b",
+      "nombre": "Plan de tratamiento",
+      "archivo": "plan_ana_martinez.pdf",
+      "fecha_subida": "2025-06-15T10:30:00",
+      "descripcion": "Plan de tratamiento personalizado."
+    }
+  },
+  {
+    "model": "consultorio.documentopaciente",
+    "pk": 4,
+    "fields": {
+      "paciente": "5bccf2fd-d757-47a5-86ea-8f8ae66b2b26",
+      "nombre": "Informe de pareja",
+      "archivo": "informe_jose_perez.pdf",
+      "fecha_subida": "2025-06-18T15:00:00",
+      "descripcion": "Informe de la sesión de pareja."
+    }
+  },
+  {
+    "model": "consultorio.documentopaciente",
+    "pk": 5,
+    "fields": {
+      "paciente": "c26fa5e6-8f7b-4632-8296-d3cb9f58bb24",
+      "nombre": "Evaluación postparto",
+      "archivo": "evaluacion_gabriela_moreno.pdf",
+      "fecha_subida": "2025-06-20T13:00:00",
+      "descripcion": "Evaluación psicológica postparto."
+    }
+  }
+]

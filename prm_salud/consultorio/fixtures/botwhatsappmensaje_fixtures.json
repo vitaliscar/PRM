@@ -1,0 +1,80 @@
+[
+  {
+    "model": "consultorio.botwhatsappmensaje",
+    "pk": 1,
+    "fields": {
+      "remitente": "PRM Bot",
+      "destinatario": "María González",
+      "mensaje": "Hola María, te recordamos tu cita para el 01/07/2025 a las 09:00.",
+      "fecha_envio": "2025-06-25T09:00:00",
+      "es_respuesta": false,
+      "paciente": "00e83c9c-1b54-4786-8430-dc9c84146751",
+      "paciente_potencial": null
+    }
+  },
+  {
+    "model": "consultorio.botwhatsappmensaje",
+    "pk": 2,
+    "fields": {
+      "remitente": "PRM Bot",
+      "destinatario": "Carlos Ramírez",
+      "mensaje": "Hola Carlos, te recordamos tu cita para el 02/07/2025 a las 11:00.",
+      "fecha_envio": "2025-06-26T11:00:00",
+      "es_respuesta": false,
+      "paciente": "ec1f1b71-fa71-483c-9760-b342c4ff81cc",
+      "paciente_potencial": null
+    }
+  },
+  {
+    "model": "consultorio.botwhatsappmensaje",
+    "pk": 3,
+    "fields": {
+      "remitente": "PRM Bot",
+      "destinatario": "Ana Martínez",
+      "mensaje": "Hola Ana, te recordamos tu cita para el 03/07/2025 a las 10:30.",
+      "fecha_envio": "2025-06-27T10:30:00",
+      "es_respuesta": false,
+      "paciente": "d4479cf2-d208-48de-8e1e-75ff88a4658b",
+      "paciente_potencial": null
+    }
+  },
+  {
+    "model": "consultorio.botwhatsappmensaje",
+    "pk": 4,
+    "fields": {
+      "remitente": "PRM Bot",
+      "destinatario": "José Pérez",
+      "mensaje": "Hola José, te recordamos tu cita para el 04/07/2025 a las 15:00.",
+      "fecha_envio": "2025-06-28T15:00:00",
+      "es_respuesta": false,
+      "paciente": "5bccf2fd-d757-47a5-86ea-8f8ae66b2b26",
+      "paciente_potencial": null
+    }
+  },
+  {
+    "model": "consultorio.botwhatsappmensaje",
+    "pk": 5,
+    "fields": {
+      "remitente": "PRM Bot",
+      "destinatario": "Gabriela Torres",
+      "mensaje": "Hola Gabriela, te recordamos tu cita para el 05/07/2025 a las 13:00.",
+      "fecha_envio": "2025-06-29T13:00:00",
+      "es_respuesta": false,
+      "paciente": "c26fa5e6-8f7b-4632-8296-d3cb9f58bb24",
+      "paciente_potencial": null
+    }
+  },
+  {
+    "model": "consultorio.botwhatsappmensaje",
+    "pk": 6,
+    "fields": {
+      "remitente": "PRM Bot",
+      "destinatario": "Luis Fernández",
+      "mensaje": "Hola Luis, te recordamos tu cita para el 06/07/2025 a las 16:00.",
+      "fecha_envio": "2025-06-30T16:00:00",
+      "es_respuesta": false,
+      "paciente": "ccd17ada-0b3d-4ae9-a00f-7bfc168fafc9",
+      "paciente_potencial": null
+    }
+  }
+]

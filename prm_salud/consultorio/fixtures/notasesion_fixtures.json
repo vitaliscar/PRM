@@ -1,0 +1,122 @@
+[
+  {
+    "model": "consultorio.notasesion",
+    "pk": 1,
+    "fields": {
+      "sesion": 1,
+      "paciente": "00e83c9c-1b54-4786-8430-dc9c84146751",
+      "profesional": 1,
+      "fecha_nota": "2025-06-10",
+      "subjetivo": "Paciente muestra avances en técnicas de relajación. Se recomienda continuar con ejercicios de respiración.",
+      "objetivo": "Mejorar técnicas de relajación.",
+      "analisis": "El paciente ha practicado ejercicios de respiración y reporta menos ansiedad.",
+      "plan": "Continuar con ejercicios de respiración y registrar sensaciones.",
+      "diagnostico_dsm": "F41.1 Trastorno de ansiedad generalizada",
+      "progreso_subjetivo_paciente": 7,
+      "progreso_objetivo_profesional": 6,
+      "tareas_asignadas": "Practicar respiración diaria.",
+      "temas_abordados": "Ansiedad, Relajación",
+      "generated_summary": "Paciente con avances en técnicas de relajación."
+    }
+  },
+  {
+    "model": "consultorio.notasesion",
+    "pk": 2,
+    "fields": {
+      "sesion": 2,
+      "paciente": "ec1f1b71-fa71-483c-9760-b342c4ff81cc",
+      "profesional": 2,
+      "fecha_nota": "2025-06-12",
+      "subjetivo": "Se observa mejoría en habilidades sociales. Próxima sesión se enfocará en manejo de ansiedad social.",
+      "objetivo": "Mejorar habilidades sociales.",
+      "analisis": "El paciente ha participado en actividades grupales.",
+      "plan": "Practicar conversación en grupo.",
+      "diagnostico_dsm": "F40.1 Fobia social",
+      "progreso_subjetivo_paciente": 8,
+      "progreso_objetivo_profesional": 7,
+      "tareas_asignadas": "Participar en grupo social.",
+      "temas_abordados": "Habilidades sociales, Ansiedad",
+      "generated_summary": "Mejoría en habilidades sociales."
+    }
+  },
+  {
+    "model": "consultorio.notasesion",
+    "pk": 3,
+    "fields": {
+      "sesion": 3,
+      "paciente": "d4479cf2-d208-48de-8e1e-75ff88a4658b",
+      "profesional": 3,
+      "fecha_nota": "2025-06-15",
+      "subjetivo": "Paciente expresa mayor confianza en sí misma. Se sugiere reforzar autoestima con tareas para el hogar.",
+      "objetivo": "Aumentar autoestima.",
+      "analisis": "El paciente ha identificado logros personales.",
+      "plan": "Escribir logros diarios.",
+      "diagnostico_dsm": "F34.1 Trastorno distímico",
+      "progreso_subjetivo_paciente": 6,
+      "progreso_objetivo_profesional": 6,
+      "tareas_asignadas": "Lista de logros.",
+      "temas_abordados": "Autoestima, Logros",
+      "generated_summary": "Confianza en sí misma en aumento."
+    }
+  },
+  {
+    "model": "consultorio.notasesion",
+    "pk": 4,
+    "fields": {
+      "sesion": 4,
+      "paciente": "5bccf2fd-d757-47a5-86ea-8f8ae66b2b26",
+      "profesional": 4,
+      "fecha_nota": "2025-06-18",
+      "subjetivo": "Se trabajó comunicación asertiva en pareja. Se asigna tarea de diálogo abierto con la pareja.",
+      "objetivo": "Mejorar comunicación en pareja.",
+      "analisis": "El paciente ha practicado diálogo abierto.",
+      "plan": "Practicar diálogo abierto semanal.",
+      "diagnostico_dsm": "Z63.0 Problemas de relación de pareja",
+      "progreso_subjetivo_paciente": 7,
+      "progreso_objetivo_profesional": 7,
+      "tareas_asignadas": "Diálogo abierto con pareja.",
+      "temas_abordados": "Comunicación, Pareja",
+      "generated_summary": "Mejoría en comunicación de pareja."
+    }
+  },
+  {
+    "model": "consultorio.notasesion",
+    "pk": 5,
+    "fields": {
+      "sesion": 5,
+      "paciente": "c26fa5e6-8f7b-4632-8296-d3cb9f58bb24",
+      "profesional": 5,
+      "fecha_nota": "2025-06-20",
+      "subjetivo": "Paciente refiere sentirse menos triste. Se refuerza red de apoyo familiar.",
+      "objetivo": "Superar depresión postparto.",
+      "analisis": "El paciente ha fortalecido su red de apoyo.",
+      "plan": "Contactar a un familiar semanalmente.",
+      "diagnostico_dsm": "F53.0 Trastorno mental y del comportamiento asociado al puerperio",
+      "progreso_subjetivo_paciente": 8,
+      "progreso_objetivo_profesional": 8,
+      "tareas_asignadas": "Contactar familiar/amigo.",
+      "temas_abordados": "Depresión, Apoyo familiar",
+      "generated_summary": "Red de apoyo fortalecida."
+    }
+  },
+  {
+    "model": "consultorio.notasesion",
+    "pk": 6,
+    "fields": {
+      "sesion": 6,
+      "paciente": "ccd17ada-0b3d-4ae9-a00f-7bfc168fafc9",
+      "profesional": 6,
+      "fecha_nota": "2025-06-22",
+      "subjetivo": "Se abordó manejo de ira con ejercicios prácticos. Se recomienda registro diario de emociones.",
+      "objetivo": "Manejo de ira laboral.",
+      "analisis": "El paciente ha realizado ejercicios prácticos de manejo de ira.",
+      "plan": "Registrar emociones diariamente.",
+      "diagnostico_dsm": "F63.8 Otros trastornos del control de los impulsos",
+      "progreso_subjetivo_paciente": 7,
+      "progreso_objetivo_profesional": 7,
+      "tareas_asignadas": "Registro diario de emociones.",
+      "temas_abordados": "Ira, Emociones",
+      "generated_summary": "Manejo de ira en progreso."
+    }
+  }
+]

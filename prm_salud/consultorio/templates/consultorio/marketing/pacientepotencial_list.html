@@ -1,0 +1,50 @@
+{% extends 'consultorio/base.html' %} {% block content %}
+<h2>Pacientes Potenciales</h2>
+<a
+  href="{% url 'consultorio:pacientepotencial_create' %}"
+  class="btn btn-primary"
+  >Nuevo prospecto</a
+>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Teléfono</th>
+      <th>Email</th>
+      <th>Canal</th>
+      <th>Estado</th>
+      <th>Fecha contacto</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for potencial in potenciales %}
+    <tr>
+      <td>{{ potencial.nombres }} {{ potencial.apellidos }}</td>
+      <td>{{ potencial.telefono }}</td>
+      <td>{{ potencial.email }}</td>
+      <td>{{ potencial.get_canal_origen_display }}</td>
+      <td>{{ potencial.get_estado_display }}</td>
+      <td>{{ potencial.fecha_contacto }}</td>
+      <td>
+        <a href="{% url 'consultorio:pacientepotencial_detail' potencial.pk %}"
+          >Ver</a
+        >
+        |
+        <a href="{% url 'consultorio:pacientepotencial_update' potencial.pk %}"
+          >Editar</a
+        >
+        |
+        <a href="{% url 'consultorio:pacientepotencial_delete' potencial.pk %}"
+          >Eliminar</a
+        >
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="7">No hay prospectos registrados.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

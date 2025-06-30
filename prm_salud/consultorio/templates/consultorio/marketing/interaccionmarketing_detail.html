@@ -1,0 +1,25 @@
+{% extends 'consultorio/base.html' %} {% block content %}
+<h2>Detalle de Interacción de Marketing</h2>
+<p><strong>Paciente Potencial:</strong> {{ interaccion.paciente_potencial }}</p>
+<p>
+  <strong>Tipo de interacción:</strong> {{
+  interaccion.get_tipo_interaccion_display }}
+</p>
+<p><strong>Fecha:</strong> {{ interaccion.fecha_interaccion }}</p>
+<p><strong>Notas:</strong> {{ interaccion.notas }}</p>
+<a
+  href="{% url 'consultorio:interaccionmarketing_update' interaccion.pk %}"
+  class="btn btn-primary"
+  >Editar</a
+>
+<a
+  href="{% url 'consultorio:interaccionmarketing_delete' interaccion.pk %}"
+  class="btn btn-danger"
+  >Eliminar</a
+>
+<a
+  href="{% url 'consultorio:interaccionmarketing_list' %}"
+  class="btn btn-secondary"
+  >Volver a la lista</a
+>
+{% endblock %}

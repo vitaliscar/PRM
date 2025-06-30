@@ -1,0 +1,65 @@
+{% extends 'consultorio/base.html' %}
+{% load static %}
+
+{% block title %}
+  Actividades - PRM
+{% endblock %}
+
+{% block header %}
+  Actividades
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+  <div class="aurora-card">
+    <div class="flex items-center justify-between mb-4">
+      <h1 class="text-2xl font-bold">Listado de Actividades</h1>
+      {% if puede_crear %}
+      <a href="{% url 'consultorio:actividad_create' %}" class="aurora-btn">
+        Registrar Actividad
+      </a>
+      {% endif %}
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200 text-sm">
+        <thead>
+          <tr>
+            <th class="px-6 py-3 text-left font-semibold uppercase text-gray-600">Descripción</th>
+            <th class="px-6 py-3 text-left font-semibold uppercase text-gray-600">Paciente</th>
+            <th class="px-6 py-3 text-left font-semibold uppercase text-gray-600">Estado</th>
+            <th class="px-6 py-3 text-left font-semibold uppercase text-gray-600">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          {% for actividad in actividades %}
+          <tr class="hover:bg-gray-50 transition">
+            <td class="px-6 py-4">{{ actividad.descripcion }}</td>
+            <td class="px-6 py-4">{{ actividad.paciente }}</td>
+            <td class="px-6 py-4">
+              <span class="badge badge-warning">{{ actividad.estado }}</span>
+            </td>
+            <td class="px-6 py-4 flex flex-wrap gap-2">
+              {% if puede_editar %}
+              <a href="{% url 'consultorio:actividad_update' actividad.id %}" class="aurora-btn">Editar</a>
+              {% endif %}
+              {% if puede_eliminar %}
+              <a href="{% url 'consultorio:actividad_delete' actividad.id %}" class="aurora-btn bg-red-500 hover:bg-red-600">
+                Eliminar
+              </a>
+              {% endif %}
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="4" class="text-center py-8 text-gray-500">
+              No hay actividades registradas.
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

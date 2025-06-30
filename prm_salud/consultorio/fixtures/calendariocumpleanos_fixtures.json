@@ -1,0 +1,192 @@
+[
+  {
+    "model": "consultorio.calendariocumpleanos",
+    "pk": 1,
+    "fields": {
+      "tipo": "Paciente",
+      "nombre": "María González",
+      "fecha_cumpleanos": "1995-03-22",
+      "email": "maria.gonzalez@gmail.com"
+    }
+  },
+  {
+    "model": "consultorio.calendariocumpleanos",
+    "pk": 2,
+    "fields": {
+      "tipo": "Equipo",
+      "nombre": "Valeria Mendoza",
+      "fecha_cumpleanos": "1982-11-15",
+      "email": "valeria.mendoza@prm.com"
+    }
+  },
+  {
+    "model": "consultorio.calendariocumpleanos",
+    "pk": 3,
+    "fields": {
+      "tipo": "Paciente",
+      "nombre": "Carlos Ramírez",
+      "fecha_cumpleanos": "2003-10-04",
+      "email": "carlos.ramirez@hotmail.com"
+    }
+  },
+  {
+    "model": "consultorio.calendariocumpleanos",
+    "pk": 4,
+    "fields": {
+      "tipo": "Equipo",
+      "nombre": "Andrés Salvatierra",
+      "fecha_cumpleanos": "1979-04-09",
+      "email": "andres.salvatierra@prm.com"
+    }
+  },
+  {
+    "model": "consultorio.calendariocumpleanos",
+    "pk": 5,
+    "fields": {
+      "tipo": "Paciente",
+      "nombre": "Ana Martínez",
+      "fecha_cumpleanos": "1997-07-08",
+      "email": "ana.martinez@yahoo.com"
+    }
+  },
+  {
+    "model": "consultorio.calendariocumpleanos",
+    "pk": 6,
+    "fields": {
+      "tipo": "Equipo",
+      "nombre": "Camila Ríos",
+      "fecha_cumpleanos": "1988-02-27",
+      "email": "camila.rios@prm.com"
+    }
+  },
+  {
+    "model": "consultorio.calendariocumpleanos",
+    "pk": 7,
+    "fields": {
+      "tipo": "Equipo",
+      "nombre": "Martina Bravo",
+      "fecha_cumpleanos": "1985-01-27",
+      "email": "martina.bravo@correo.com"
+    }
+  },
+  {
+    "model": "consultorio.calendariocumpleanos",
+    "pk": 8,
+    "fields": {
+      "tipo": "Equipo",
+      "nombre": "Patricia León",
+      "fecha_cumpleanos": "1994-10-19",
+      "email": "patricia.leon@correo.com"
+    }
+  },
+  {
+    "model": "consultorio.calendariocumpleanos",
+    "pk": 9,
+    "fields": {
+      "tipo": "Paciente",
+      "nombre": "Joaquín Méndez",
+      "fecha_cumpleanos": "2003-06-29",
+      "email": "joaquin.mendez@correo.com"
+    }
+  },
+  {
+    "model": "consultorio.calendariocumpleanos",
+    "pk": 10,
+    "fields": {
+      "tipo": "Equipo",
+      "nombre": "Esteban Rivas",
+      "fecha_cumpleanos": "1972-05-10",
+      "email": "esteban.rivas@correo.com"
+    }
+  },
+  {
+    "model": "consultorio.calendariocumpleanos",
+    "pk": 11,
+    "fields": {
+      "tipo": "Equipo",
+      "nombre": "Lucía Bravo",
+      "fecha_cumpleanos": "1985-02-05",
+      "email": "lucia.bravo@correo.com"
+    }
+  },
+  {
+    "model": "consultorio.calendariocumpleanos",
+    "pk": 12,
+    "fields": {
+      "tipo": "Equipo",
+      "nombre": "Gabriela Moreno",
+      "fecha_cumpleanos": "1984-05-18",
+      "email": "gabriela.moreno@correo.com"
+    }
+  },
+  {
+    "model": "consultorio.calendariocumpleanos",
+    "pk": 13,
+    "fields": {
+      "tipo": "Paciente",
+      "nombre": "Pedro Medina",
+      "fecha_cumpleanos": "1990-01-14",
+      "email": "pedro.medina@correo.com"
+    }
+  },
+  {
+    "model": "consultorio.calendariocumpleanos",
+    "pk": 14,
+    "fields": {
+      "tipo": "Paciente",
+      "nombre": "Natalia Figueroa",
+      "fecha_cumpleanos": "2009-04-21",
+      "email": "natalia.figueroa@correo.com"
+    }
+  },
+  {
+    "model": "consultorio.calendariocumpleanos",
+    "pk": 15,
+    "fields": {
+      "tipo": "Paciente",
+      "nombre": "Camila Bravo",
+      "fecha_cumpleanos": "1990-04-29",
+      "email": "camila.bravo@correo.com"
+    }
+  },
+  {
+    "model": "consultorio.calendariocumpleanos",
+    "pk": 16,
+    "fields": {
+      "tipo": "Paciente",
+      "nombre": "Gabriela Ríos",
+      "fecha_cumpleanos": "2002-09-08",
+      "email": "gabriela.rios@correo.com"
+    }
+  },
+  {
+    "model": "consultorio.calendariocumpleanos",
+    "pk": 17,
+    "fields": {
+      "tipo": "Paciente",
+      "nombre": "Jorge Ramírez",
+      "fecha_cumpleanos": "1997-04-02",
+      "email": "jorge.ramirez@correo.com"
+    }
+  },
+  {
+    "model": "consultorio.calendariocumpleanos",
+    "pk": 18,
+    "fields": {
+      "tipo": "Paciente",
+      "nombre": "Sofía Lucena",
+      "fecha_cumpleanos": "1988-04-18",
+      "email": "sofia.lucena@correo.com"
+    }
+  },
+  {
+    "model": "consultorio.calendariocumpleanos",
+    "pk": 19,
+    "fields": {
+      "tipo": "Paciente",
+      "nombre": "Camila Herrera",
+      "fecha_cumpleanos": "2003-09-02",
+      "email": "camila.herrera@correo.com"
+    }
+  }
+]

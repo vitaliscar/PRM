@@ -1,0 +1,75 @@
+{% extends 'consultorio/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+  {% if object %}
+    Editar Actividad
+  {% else %}
+    Nueva Actividad
+  {% endif %}
+{% endblock %}
+
+{% block header %}
+  {% if object %}
+    Editar Actividad
+  {% else %}
+    Registrar Nueva Actividad
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto aurora-card">
+  <h1 class="text-2xl font-bold mb-6">
+    {% if object %}
+      Editar Actividad
+    {% else %}
+      Registrar Nueva Actividad
+    {% endif %}
+  </h1>
+
+  <form method="post" class="space-y-4">
+    {% csrf_token %}
+
+    {% if form.errors %}
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+      <strong>¡Error al guardar!</strong>
+      <ul class="mt-2 list-disc list-inside">
+        {% for field, errors in form.errors.items %}
+          <li><strong>{{ field }}:</strong> {{ errors|join:", " }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    {% for field in form %}
+    <div class="mb-4">
+      <label for="{{ field.id_for_label }}" class="block text-gray-700 font-medium mb-1">
+        {{ field.label }}
+        {% if field.field.required %}<span class="text-red-500">*</span>{% endif %}
+      </label>
+      {{ field|add_class:"input-field w-full" }}
+      {% if field.help_text %}
+      <p class="text-xs text-gray-500 mt-1">{{ field.help_text }}</p>
+      {% endif %}
+      {% if field.errors %}
+      <div class="bg-red-50 border border-red-300 text-red-700 text-sm mt-1 px-3 py-2 rounded">
+        {% for error in field.errors %}
+          <p>{{ error }}</p>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
+
+    <div class="flex justify-end gap-2 mt-6">
+      <a href="{% url 'consultorio:actividad_list' %}" class="aurora-btn bg-gray-200 text-gray-800 hover:bg-gray-300">
+        Cancelar
+      </a>
+      <button type="submit" class="aurora-btn">
+        {% if object %} Actualizar {% else %} Registrar {% endif %}
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock %}

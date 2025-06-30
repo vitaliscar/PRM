@@ -1,0 +1,57 @@
+[
+  {
+    "model": "consultorio.redsocial",
+    "pk": 1,
+    "fields": {
+      "canal": "Instagram",
+      "fecha_registro": "2025-06-01",
+      "seguidores": 1200,
+      "interacciones": 340,
+      "comentarios": 45
+    }
+  },
+  {
+    "model": "consultorio.redsocial",
+    "pk": 2,
+    "fields": {
+      "canal": "YouTube",
+      "fecha_registro": "2025-06-02",
+      "seguidores": 850,
+      "interacciones": 210,
+      "comentarios": 32
+    }
+  },
+  {
+    "model": "consultorio.redsocial",
+    "pk": 3,
+    "fields": {
+      "canal": "Facebook",
+      "fecha_registro": "2025-06-03",
+      "seguidores": 2300,
+      "interacciones": 500,
+      "comentarios": 67
+    }
+  },
+  {
+    "model": "consultorio.redsocial",
+    "pk": 4,
+    "fields": {
+      "canal": "Twitter",
+      "fecha_registro": "2025-06-04",
+      "seguidores": 430,
+      "interacciones": 120,
+      "comentarios": 18
+    }
+  },
+  {
+    "model": "consultorio.redsocial",
+    "pk": 5,
+    "fields": {
+      "canal": "Instagram",
+      "fecha_registro": "2025-06-05",
+      "seguidores": 1750,
+      "interacciones": 410,
+      "comentarios": 54
+    }
+  }
+]

@@ -1,0 +1,102 @@
+[
+  {
+    "model": "consultorio.planterapeutico",
+    "pk": 1,
+    "fields": {
+      "paciente": "00e83c9c-1b54-4786-8430-dc9c84146751",
+      "profesional": 1,
+      "nombre_plan": "Plan de Ansiedad Laboral",
+      "fecha_inicio_plan": "2025-06-10",
+      "fecha_fin_estimada": "2025-09-10",
+      "objetivo_principal_terapeutico": "Reducir síntomas de ansiedad laboral.",
+      "metas_especificas": [
+        "Aprender técnicas de relajación",
+        "Mejorar hábitos de sueño"
+      ],
+      "enfoque_terapeutico": "Cognitivo-Conductual",
+      "estado_plan": "Activo",
+      "fecha_finalizacion_real": null,
+      "observaciones_plan": ""
+    }
+  },
+  {
+    "model": "consultorio.planterapeutico",
+    "pk": 2,
+    "fields": {
+      "paciente": "ec1f1b71-fa71-483c-9760-b342c4ff81cc",
+      "profesional": 2,
+      "nombre_plan": "Plan de Habilidades Sociales",
+      "fecha_inicio_plan": "2025-06-12",
+      "fecha_fin_estimada": "2025-09-12",
+      "objetivo_principal_terapeutico": "Mejorar habilidades sociales.",
+      "metas_especificas": [
+        "Participar en actividades grupales",
+        "Practicar conversación"
+      ],
+      "enfoque_terapeutico": "Humanista",
+      "estado_plan": "Activo",
+      "fecha_finalizacion_real": null,
+      "observaciones_plan": ""
+    }
+  },
+  {
+    "model": "consultorio.planterapeutico",
+    "pk": 3,
+    "fields": {
+      "paciente": "d4479cf2-d208-48de-8e1e-75ff88a4658b",
+      "profesional": 3,
+      "nombre_plan": "Plan de Autoestima",
+      "fecha_inicio_plan": "2025-06-15",
+      "fecha_fin_estimada": "2025-09-15",
+      "objetivo_principal_terapeutico": "Aumentar autoestima y autoconfianza.",
+      "metas_especificas": [
+        "Identificar logros personales",
+        "Reforzar pensamientos positivos"
+      ],
+      "enfoque_terapeutico": "Integrativo",
+      "estado_plan": "Activo",
+      "fecha_finalizacion_real": null,
+      "observaciones_plan": ""
+    }
+  },
+  {
+    "model": "consultorio.planterapeutico",
+    "pk": 4,
+    "fields": {
+      "paciente": "5bccf2fd-d757-47a5-86ea-8f8ae66b2b26",
+      "profesional": 4,
+      "nombre_plan": "Plan de Comunicación en Pareja",
+      "fecha_inicio_plan": "2025-06-18",
+      "fecha_fin_estimada": "2025-09-18",
+      "objetivo_principal_terapeutico": "Mejorar comunicación en pareja.",
+      "metas_especificas": [
+        "Practicar escucha activa",
+        "Expresar emociones sin juicio"
+      ],
+      "enfoque_terapeutico": "Terapia Sistémica",
+      "estado_plan": "Activo",
+      "fecha_finalizacion_real": null,
+      "observaciones_plan": ""
+    }
+  },
+  {
+    "model": "consultorio.planterapeutico",
+    "pk": 5,
+    "fields": {
+      "paciente": "c26fa5e6-8f7b-4632-8296-d3cb9f58bb24",
+      "profesional": 5,
+      "nombre_plan": "Plan de Depresión Postparto",
+      "fecha_inicio_plan": "2025-06-20",
+      "fecha_fin_estimada": "2025-09-20",
+      "objetivo_principal_terapeutico": "Superar depresión postparto.",
+      "metas_especificas": [
+        "Fortalecer red de apoyo",
+        "Identificar pensamientos negativos"
+      ],
+      "enfoque_terapeutico": "Cognitivo-Conductual",
+      "estado_plan": "Activo",
+      "fecha_finalizacion_real": null,
+      "observaciones_plan": ""
+    }
+  }
+]
