@@ -1,0 +1,45 @@
+{% extends 'consultorio/base.html' %}
+{% load static %}
+
+{% block title %}
+  Detalle de Sesión - Vitalis PRM
+{% endblock %}
+
+{% block header %}
+  Detalle de Sesión
+{% endblock %}
+
+{% block content %}
+<div class="text-main font-['Montserrat'] pt-2.5 mb-2.5">
+  <!-- Encabezado -->
+  <div class="flex items-center justify-between flex-wrap gap-4 mb-5">
+    <h1 class="dashboard-section-title text-2xl font-bold text-[#1D7B16] leading-none py-0.5">
+      Información de la Sesión
+    </h1>
+    <div class="flex gap-2">
+      <a href="{% url 'consultorio:sesion_update' sesion.pk %}" class="text-sm font-medium px-4 py-2 rounded-lg shadow transition duration-200" style="background: var(--primary); color: var(--text-white); border: none">
+        Editar
+      </a>
+      <a href="{% url 'consultorio:sesion_delete' sesion.pk %}" class="text-sm font-medium px-4 py-2 rounded-lg shadow transition duration-200 text-white" style="background: var(--danger); border: none">
+        Eliminar
+      </a>
+    </div>
+  </div>
+
+  <!-- Detalles de la sesión -->
+  <div class="bg-white shadow-sm rounded-xl border border-border-light p-6 space-y-4 text-sm text-gray-700">
+    <div><strong>ID:</strong> {{ sesion.id }}</div>
+    <div><strong>Fecha de sesión:</strong> {{ sesion.fecha_sesion|date:'d/m/Y' }}</div>
+    <div><strong>Paciente:</strong> {{ sesion.paciente.nombres }} {{ sesion.paciente.apellidos }}</div>
+    <div><strong>Tipo:</strong> {{ sesion.get_tipo_sesion_display }}</div>
+    <div><strong>Estado:</strong> {{ sesion.get_estado_display }}</div>
+    <div><strong>Notas:</strong>
+      {% if sesion.notas %}
+        <p class="mt-1 whitespace-pre-line text-gray-800">{{ sesion.notas }}</p>
+      {% else %}
+        <span class="text-gray-400">Sin notas registradas.</span>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

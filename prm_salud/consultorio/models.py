@@ -102,6 +102,8 @@ class Paciente(models.Model):
     motivo_principal_consulta_inicial = models.TextField(blank=True, null=True, verbose_name="Motivo Principal de Consulta Inicial")
     estado_inicial_valoracion = models.CharField(max_length=50, blank=True, null=True, verbose_name="Estado Inicial de Valoración")
     foto = models.ImageField(upload_to='pacientes/fotos/', blank=True, null=True, verbose_name="Foto")
+    foto_offset_x = models.PositiveSmallIntegerField(default=50, verbose_name="Posición X de la Foto")
+    foto_offset_y = models.PositiveSmallIntegerField(default=50, verbose_name="Posición Y de la Foto")
 
     class Meta:
         verbose_name = "Paciente"

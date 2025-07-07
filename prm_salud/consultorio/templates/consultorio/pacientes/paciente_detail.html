@@ -148,11 +148,15 @@ Paciente {% endblock %} {% block content %}
           src="{{ paciente.foto.url }}"
           alt="Foto de {{ paciente.nombres }}"
           class="w-28 h-28 rounded-full object-cover border-20 border-[#1D7B16] shadow"
+          style="object-position: {{ paciente.foto_offset_x|default:50 }}% {{ paciente.foto_offset_y|default:50 }}%;"
         />
         {% else %}
-        <div class="w-28 h-28 rounded-full border-4 border-[#1D7B16] flex items-center justify-center shadow bg-white">
+        <div
+          class="w-28 h-28 rounded-full border-4 border-[#1D7B16] flex items-center justify-center shadow bg-white"
+        >
           <span class="text-[#1D7B16] font-extrabold text-4xl">
-            {{ paciente.nombres|slice:":1"|upper }}{{ paciente.apellidos|slice:":1"|upper }}
+            {{ paciente.nombres|slice:":1"|upper }}{{
+            paciente.apellidos|slice:":1"|upper }}
           </span>
         </div>
         {% endif %}

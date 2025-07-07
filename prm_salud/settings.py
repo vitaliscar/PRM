@@ -79,8 +79,12 @@ WSGI_APPLICATION = 'prm_salud.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'prm_db',
+        'USER': 'prm_user',
+        'PASSWORD': 'Joaquin03',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -113,7 +117,8 @@ TIME_ZONE = 'America/Mexico_City'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
+DATE_INPUT_FORMATS = ['%Y-%m-%d']
 
 USE_TZ = True
 
@@ -129,6 +134,9 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'prm_salud' / 'consultorio' / 'static',
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 
 # Default primary key field type

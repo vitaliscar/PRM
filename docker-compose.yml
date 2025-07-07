@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: prm_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: prm_user
+      POSTGRES_PASSWORD: Joaquin03
+      POSTGRES_DB: prm_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:

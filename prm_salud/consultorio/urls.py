@@ -27,6 +27,7 @@ urlpatterns = [
     path('sesiones/nueva/', views.SesionCreateView.as_view(), name='sesion_create'),
     path('sesiones/<int:pk>/editar/', views.SesionUpdateView.as_view(), name='sesion_update'),
     path('sesiones/<int:pk>/eliminar/', views.SesionDeleteView.as_view(), name='sesion_delete'),
+    path('sesiones/<int:pk>/', views.SesionDetailView.as_view(), name='sesion_detail'),
 
     # Notas de Sesión (usamos sesion_id para asociar la nota)
     path('sesiones/<int:sesion_id>/nota/crear_o_editar/', views.NotaSesionCreateUpdateView.as_view(), name='nota_sesion_create_update'),

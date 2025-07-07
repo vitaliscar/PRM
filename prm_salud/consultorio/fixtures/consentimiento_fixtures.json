@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "paciente": "00e83c9c-1b54-4786-8430-dc9c84146751",
-      "fecha_firma": "2025-06-10T09:00:00",
+      "fecha_firma": "2025-06-10T09:00:00Z",
       "tipo": "general",
       "firmado_por": "María González",
       "archivo_pdf": "consentimiento_maria_gonzalez.pdf"
@@ -15,7 +15,7 @@
     "pk": 2,
     "fields": {
       "paciente": "ec1f1b71-fa71-483c-9760-b342c4ff81cc",
-      "fecha_firma": "2025-06-12T11:00:00",
+      "fecha_firma": "2025-06-12T11:00:00Z",
       "tipo": "general",
       "firmado_por": "Carlos Ramírez",
       "archivo_pdf": "consentimiento_carlos_ramirez.pdf"
@@ -26,7 +26,7 @@
     "pk": 3,
     "fields": {
       "paciente": "d4479cf2-d208-48de-8e1e-75ff88a4658b",
-      "fecha_firma": "2025-06-15T10:30:00",
+      "fecha_firma": "2025-06-15T10:30:00Z",
       "tipo": "psicoterapia",
       "firmado_por": "Ana Martínez",
       "archivo_pdf": "consentimiento_ana_martinez.pdf"
@@ -37,7 +37,7 @@
     "pk": 4,
     "fields": {
       "paciente": "5bccf2fd-d757-47a5-86ea-8f8ae66b2b26",
-      "fecha_firma": "2025-06-18T15:00:00",
+      "fecha_firma": "2025-06-18T15:00:00Z",
       "tipo": "psicoterapia",
       "firmado_por": "José Pérez",
       "archivo_pdf": "consentimiento_jose_perez.pdf"
@@ -48,7 +48,7 @@
     "pk": 5,
     "fields": {
       "paciente": "c26fa5e6-8f7b-4632-8296-d3cb9f58bb24",
-      "fecha_firma": "2025-06-20T13:00:00",
+      "fecha_firma": "2025-06-20T13:00:00Z",
       "tipo": "general",
       "firmado_por": "Gabriela Moreno",
       "archivo_pdf": "consentimiento_gabriela_moreno.pdf"

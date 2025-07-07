@@ -1,157 +1,351 @@
 {% extends 'consultorio/base.html' %}
 {% load static %}
 {% load widget_tweaks %}
-{% block title %}{{ object|yesno:"Editar Paciente,Nuevo Paciente" }}{% endblock %}
-{% block header %}{{ object|yesno:"Editar Paciente,Datos del Paciente" }}{% endblock %}
-{% block content %}
 
+{% block title %}
+  {% if object %}Editar Paciente{% else %}Nuevo Paciente{% endif %}
+{% endblock %}
+
+{% block header %}
+  {% if object %}Editar Paciente{% else %}Datos del Paciente{% endif %}
+{% endblock %}
+
+{% block content %}
+{% with class_input="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 w-full px-4 py-2 rounded-md border border-gray-300 bg-white text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-lime-500" %}
 <style>
   input[type="file"]::file-selector-button {
-    font-size: 0.8rem;
+    font-size: 10px;
+    padding: 4px 10px;
+    background-color: #9ae165;
+    color: #000000;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    margin-right: 10px;
+    height: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    cursor: pointer;
   }
+
   input[type="file"] {
-    font-size: 0.6rem;
+    font-size: 8px;
+    height: 2.5rem;
+    padding: 0.5rem 0.5em;
+    line-height: 1.5rem;
+    background-color: #ffffff;
+    color: #374151;
+    border-radius: 0.375rem;
+    border: 1px solid #d1d5db;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .field-calendar-wrapper {
+    position: relative;
+  }
+
+  .field-calendar-wrapper svg.calendar-icon {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    pointer-events: auto;
+  }
+
+  /* Avatar container for drag positioning */
+  #avatar-container {
+    position: relative;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 9999px;
+    border: 1px solid #d1d5db;
+    background-color: #f3f4f6;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: move;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #avatar-preview {
+    width: 8rem;
+    height: 8rem;
+    object-fit: cover;
+    object-position: 50% 50%;
+    border-radius: 9999px;
+    pointer-events: none;
+    user-drag: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
   }
 </style>
 
-<div class="font-['Montserrat'] text-main text-[14px] pl-[260px] pr-6 pt-6 pb-10 min-h-[calc(100vh-120px)]">
-  <div class="flex items-center justify-between mb-6">
-    <h1 class="text-2xl font-bold text-[#1D7B16]">
-      {{ object|yesno:"Editar Paciente,Datos del Paciente" }}
-    </h1>
-    <a href="{% url 'consultorio:paciente_list' %}" class="text-sm font-medium px-4 py-2 rounded-md bg-gray-100 text-gray-800 hover:bg-gray-200 transition shadow-sm">
-      Cancelar
-    </a>
-  </div>
+<div class="max-w-4xl mx-auto bg-white rounded-2xl border border-gray-100 shadow p-8 mb-2 space-y-8">
+  <h1 class="dashboard-section-title text-2xl font-bold text-[#1D7B16] leading-tight pt-1 pb-1">
+    {% if object %}Editar Paciente{% else %}Datos del Paciente{% endif %}
+  </h1>
 
-  <form method="post" enctype="multipart/form-data" onsubmit="return validarCampos()" class="bg-white p-8 rounded-2xl border border-gray-100 shadow space-y-12 max-w-6xl w-full">
+  <form method="post" enctype="multipart/form-data" class="space-y-10">
     {% csrf_token %}
     {% if form.errors %}
-    <div class="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-md text-sm">
-      <strong class="block mb-2">Revisa los siguientes errores:</strong>
-      <ul class="list-disc list-inside space-y-1">
+    <div class="bg-red-100 border border-red-300 text-red-800 px-4 py-3 rounded-md text-sm">
+      <strong class="block mb-1">¡Error al guardar!</strong>
+      <ul class="list-disc list-inside">
         {% for field, errors in form.errors.items %}
-        <li><strong>{{ field|capfirst }}:</strong> {{ errors|join:", " }}</li>
+        <li><strong>{{ field }}:</strong> {{ errors|join:", " }}</li>
         {% endfor %}
       </ul>
     </div>
     {% endif %}
 
-    <!-- DATOS GENERALES -->
+    <!-- Bloque: Datos Generales -->
     <fieldset class="space-y-6">
-      <legend class="text-lg font-bold text-[#1D7B16] flex items-center gap-2">
-        <i data-lucide="user-circle" class="w-5 h-5"></i> Datos Generales
-      </legend>
+      <legend class="text-lg font-bold text-[#1D7B16] border-b border-gray-200 pb-1">Datos Generales</legend>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {% for field in form.visible_fields %}
-        {% if field.name == "nombres" or field.name == "apellidos" or field.name == "cedula_identidad" or field.name == "fecha_nacimiento" or field.name == "genero" or field.name == "telefono" or field.name == "email" or field.name == "direccion" or field.name == "foto" %}
-        <div>
-          <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">
-            {{ field.label }}{% if field.field.required %}<span class="text-red-500">*</span>{% endif %}
-          </label>
-          {{ field|add_class:"w-full px-4 py-2 rounded-md border border-gray-300 bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-lime-500" }}
-          {% if field.help_text %}
-          <p class="text-xs text-gray-500 mt-1">{{ field.help_text }}</p>
+          {% if field.name == "fecha_nacimiento" %}
+            <div>
+              <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">
+                {{ field.label }} {% if field.field.required %}<span class="text-red-500">*</span>{% endif %}
+              </label>
+              <div class="field-calendar-wrapper">
+                {{ field|add_class:class_input|attr:"id=fecha_nacimiento" }}
+                <svg xmlns="http://www.w3.org/2000/svg" class="calendar-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" role="button" aria-label="Abrir calendario">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+              {% if field.help_text %}
+              <p class="text-xs text-gray-500 mt-1">{{ field.help_text }}</p>
+              {% endif %}
+              {% if field.errors %}
+              <div class="mt-1 text-sm text-red-600">
+                {% for error in field.errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+          {% elif field.name == "nombres" or field.name == "apellidos" or field.name == "cedula_identidad" or field.name == "genero" or field.name == "telefono" or field.name == "email" or field.name == "direccion" %}
+            <div>
+              <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">
+                {{ field.label }} {% if field.field.required %}<span class="text-red-500">*</span>{% endif %}
+              </label>
+              {{ field|add_class:class_input }}
+              {% if field.help_text %}
+              <p class="text-xs text-gray-500 mt-1">{{ field.help_text }}</p>
+              {% endif %}
+              {% if field.errors %}
+              <div class="mt-1 text-sm text-red-600">
+                {% for error in field.errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
           {% endif %}
-          {% if field.errors %}
-          <ul class="mt-1 text-xs text-red-600 list-disc list-inside">
-            {% for error in field.errors %}
-            <li>{{ error }}</li>
-            {% endfor %}
-          </ul>
-          {% endif %}
-        </div>
-        {% endif %}
         {% endfor %}
-
         {% if form.instance.pk %}
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Edad calculada</label>
-          <input type="text" value="{{ form.instance.edad }} años" readonly class="w-full px-4 py-2 rounded-md border border-gray-200 bg-gray-100 text-gray-600" />
+          <label for="edad_calculada" class="block text-sm font-medium text-gray-700 mb-1">Edad calculada</label>
+          <input type="text" id="edad_calculada" value="{{ form.instance.edad }} años" readonly class="{{ class_input }}" />
         </div>
         {% endif %}
       </div>
     </fieldset>
 
-    <!-- DATOS MÉDICOS -->
+    <!-- Bloque: Datos Médicos -->
     <fieldset class="space-y-6">
-      <legend class="text-lg font-bold text-[#1D7B16] flex items-center gap-2">
-        <i data-lucide="stethoscope" class="w-5 h-5"></i> Datos Médicos
-      </legend>
+      <legend class="text-lg font-bold text-[#1D7B16] border-b border-gray-200 pb-1">Datos Médicos</legend>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {% for field in form.visible_fields %}
-        {% if field.name == "estado_paciente" or field.name == "fuente_referencia" or field.name == "estado_inicial_valoracion" %}
-        <div>
-          <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">
-            {{ field.label }}{% if field.field.required %}<span class="text-red-500">*</span>{% endif %}
-          </label>
-          {{ field|add_class:"w-full px-4 py-2 rounded-md border border-gray-300 bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-lime-500" }}
-          {% if field.help_text %}
-          <p class="text-xs text-gray-500 mt-1">{{ field.help_text }}</p>
+          {% if field.name == "estado_paciente" or field.name == "fuente_referencia" or field.name == "estado_inicial_valoracion" %}
+            <div>
+              <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">
+                {{ field.label }} {% if field.field.required %}<span class="text-red-500">*</span>{% endif %}
+              </label>
+              {{ field|add_class:class_input }}
+              {% if field.help_text %}
+              <p class="text-xs text-gray-500 mt-1">{{ field.help_text }}</p>
+              {% endif %}
+              {% if field.errors %}
+              <div class="mt-1 text-sm text-red-600">
+                {% for error in field.errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
           {% endif %}
-          {% if field.errors %}
-          <ul class="mt-1 text-xs text-red-600 list-disc list-inside">
-            {% for error in field.errors %}
-            <li>{{ error }}</li>
-            {% endfor %}
-          </ul>
-          {% endif %}
-        </div>
-        {% endif %}
         {% endfor %}
       </div>
     </fieldset>
 
-    <!-- Nota sobre campos requeridos -->
-    <p class="text-xs text-gray-500 italic mt-4">
-      <span class="text-red-500">*</span> Campos obligatorios.
-    </p>
+    <!-- Bloque: Foto del Paciente con vista previa y drag para posicionar -->
+    <fieldset class="space-y-6">
+      <legend class="text-lg font-bold text-[#1D7B16] border-b border-gray-200 pb-1">Foto del Paciente</legend>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">
+            Avatar
+          </label>
+          <div id="avatar-container">
+            <img
+              id="avatar-preview"
+              src="{% if form.instance.foto %}{{ form.instance.foto.url }}{% else %}{% static 'consultorio/img/user_placeholder.png' %}{% endif %}"
+              alt="Vista previa del avatar"
+              class="w-32 h-32 object-cover select-none"
+              draggable="false"
+              style="object-position: 50% 50%;"
+            >
+            <!-- Inputs ocultos para guardar el offset -->
+            <input type="hidden" id="foto_offset_x" name="foto_offset_x" value="50">
+            <input type="hidden" id="foto_offset_y" name="foto_offset_y" value="50">
+          </div>
+          <p class="text-xs text-gray-500 mt-2 text-center">Arrastra la foto para ajustar la posición dentro del avatar.</p>
+        </div>
+        <div>
+          <label for="foto" class="block text-sm font-medium text-gray-700 mb-1">
+            Selecciona una foto
+          </label>
+          <input type="file" id="foto" name="foto" accept="image/*" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <p class="text-xs text-gray-500 mt-1">La imagen debe ser cuadrada y de buena resolución para mejores resultados visuales.</p>
+          {% if form.errors.foto %}
+          <div class="mt-1 text-sm text-red-600">
+            {% for error in form.errors.foto %}
+            <p>{{ error }}</p>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </fieldset>
 
-    <!-- Botón guardar -->
-    <div class="flex justify-end pt-6 border-t border-gray-100 mt-8">
-      <button type="submit" class="px-6 py-2 rounded-md text-sm font-medium bg-[#1D7B16] hover:bg-[#156010] text-white shadow transition">
-        {{ object|yesno:"Actualizar,Guardar" }}
+    <!-- Botones -->
+    <div class="flex justify-end gap-1.5 pt-6 border-t border-gray-100 mt-6">
+      <button
+        type="submit"
+        class="text-sm font-medium px-6 py-2 rounded-md text-black hover:bg-[#7cc744] transition shadow-sm"
+        style="background-color: #9ae165;"
+      >
+        {% if object %}Actualizar{% else %}Registrar{% endif %}
       </button>
+      <a
+        href="{% url 'consultorio:paciente_list' %}"
+        class="text-sm font-medium px-4 py-2 rounded-md bg-gray-100 text-gray-800 hover:bg-gray-200 transition shadow-sm"
+      >
+        Cancelar
+      </a>
     </div>
   </form>
 </div>
 
 <script>
-  function validarCampos() {
-    const fecha = document.getElementById("id_fecha_nacimiento");
-    if (fecha && !fecha.value) {
-      alert("Por favor selecciona una fecha de nacimiento.");
-      fecha.focus();
-      return false;
-    }
-    return true;
-  }
+  document.addEventListener("DOMContentLoaded", function () {
+    // Flatpickr y edad
+    const fp = flatpickr("#fecha_nacimiento", {
+      dateFormat: "Y-m-d",
+      altInput: true,
+      altFormat: "Y-m-d",
+      allowInput: true,
+      onChange: updateAge,
+    });
 
-  function calcularEdad(fechaStr) {
-    const hoy = new Date();
-    const nacimiento = new Date(fechaStr);
-    let edad = hoy.getFullYear() - nacimiento.getFullYear();
-    const mes = hoy.getMonth() - nacimiento.getMonth();
-    if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
-      edad--;
-    }
-    return edad;
-  }
+    const calendarIcon = document.querySelector(".field-calendar-wrapper svg.calendar-icon");
+    const dateInput = document.querySelector("#fecha_nacimiento");
+    const ageInput = document.querySelector("#edad_calculada");
 
-  window.addEventListener("DOMContentLoaded", () => {
-    const inputFecha = document.getElementById("id_fecha_nacimiento");
-    const inputEdad = document.querySelector('input[readonly][value$="años"]');
-    if (inputFecha && inputEdad) {
-      if (inputFecha.value) {
-        inputEdad.value = calcularEdad(inputFecha.value) + " años";
-      }
-      inputFecha.addEventListener("change", () => {
-        if (inputFecha.value) {
-          const nuevaEdad = calcularEdad(inputFecha.value);
-          inputEdad.value = nuevaEdad + " años";
-        }
+    if (calendarIcon && dateInput) {
+      calendarIcon.style.cursor = "pointer";
+      calendarIcon.addEventListener("click", () => {
+        fp.open();
+        dateInput.focus();
       });
     }
+
+    function calculateAge(birthDate) {
+      const today = new Date();
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      return age >= 0 ? age : 0;
+    }
+    function updateAge(selectedDates, dateStr, instance) {
+      if (!ageInput) return;
+      let birthDate;
+      if (selectedDates && selectedDates.length > 0) {
+        birthDate = selectedDates[0];
+      } else {
+        birthDate = new Date(dateInput.value);
+      }
+      if (birthDate && !isNaN(birthDate.getTime())) {
+        const age = calculateAge(birthDate);
+        ageInput.value = age + " años";
+      } else {
+        ageInput.value = "";
+      }
+    }
+    updateAge(null, null, null);
+
+    // Avatar preview y drag
+    document.getElementById("foto").addEventListener("change", function (e) {
+      const [file] = this.files;
+      if (file) {
+        let reader = new FileReader();
+        reader.onload = function (evt) {
+          document.getElementById("avatar-preview").src = evt.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    const avatar = document.getElementById('avatar-container');
+    const img = document.getElementById('avatar-preview');
+    const inputX = document.getElementById('foto_offset_x');
+    const inputY = document.getElementById('foto_offset_y');
+    let dragging = false, posX = 50, posY = 50;
+
+    function updateObjectPosition() {
+      img.style.objectPosition = `${posX}% ${posY}%`;
+      inputX.value = Math.round(posX);
+      inputY.value = Math.round(posY);
+    }
+
+    avatar.addEventListener('mousedown', function(e) {
+      dragging = true;
+      avatar.style.cursor = "grabbing";
+    });
+    window.addEventListener('mousemove', function(e) {
+      if (!dragging) return;
+      const rect = avatar.getBoundingClientRect();
+      const dx = ((e.clientX - rect.left) / rect.width) * 100;
+      const dy = ((e.clientY - rect.top) / rect.height) * 100;
+      posX = Math.max(0, Math.min(100, dx));
+      posY = Math.max(0, Math.min(100, dy));
+      updateObjectPosition();
+    });
+    window.addEventListener('mouseup', function() {
+      if (dragging) {
+        dragging = false;
+        avatar.style.cursor = "move";
+      }
+    });
+
+    // Inicializa posición por defecto
+    updateObjectPosition();
   });
 </script>
+{% endwith %}
 {% endblock %}

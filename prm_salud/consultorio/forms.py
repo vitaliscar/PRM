@@ -1,22 +1,23 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import PerfilUsuario, Paciente, Profesional, Sesion, NotaSesion, PlanTerapeutico, Actividad, DocumentoPaciente, Cita, HistorialCambios, Consentimiento, PacientePotencial, InteraccionMarketing, RedSocial, BotWhatsappMensaje, CalendarioCumpleanos
+from .models import (
+    PerfilUsuario, Paciente, Profesional, Sesion, NotaSesion,
+    PlanTerapeutico, Actividad, DocumentoPaciente, Cita,
+    HistorialCambios, Consentimiento, PacientePotencial,
+    InteraccionMarketing, RedSocial, BotWhatsappMensaje,
+    CalendarioCumpleanos
+)
 
 class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email', 'username']
-        help_texts = {
-            'username': '',
-        }
+        help_texts = {'username': ''}
 
 class PerfilUsuarioForm(forms.ModelForm):
     class Meta:
         model = PerfilUsuario
         fields = ['rol']
-
-from django import forms
-from .models import Paciente
 
 class PacienteForm(forms.ModelForm):
     class Meta:
@@ -24,22 +25,25 @@ class PacienteForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'fecha_nacimiento': forms.DateInput(
-                format='%Y-%m-%d',
-                attrs={'type': 'date'}
-            ),
+                format='date',
+                attrs={
+                    'type': 'date',
+                    'placeholder': 'YYYY-MM-DD',
+                    'class': 'form-input',
+                    'autocomplete': 'off'
+                }
+            )
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['foto'].widget.attrs.update({'accept': 'image/*'})
-        if self.instance and self.instance.fecha_nacimiento:
-            # Mostrar en formato regional DD/MM/YYYY
-            self.initial['fecha_nacimiento'] = self.instance.fecha_nacimiento.strftime('%d/%m/%Y')
 
-    def clean_fecha_nacimiento(self):
-        # Convertir de DD/MM/YYYY a YYYY-MM-DD antes de guardar
-        fecha = self.cleaned_data['fecha_nacimiento']
-        return fecha.strftime('%Y-%m-%d')
+        self.fields['foto'].widget.attrs.update({'accept': 'image/*'})
+
+        if self.instance and self.instance.pk and self.instance.fecha_nacimiento:
+            self.fields['fecha_nacimiento'].initial = self.instance.fecha_nacimiento.strftime('date')
+
+        self.fields['fecha_nacimiento'].widget.format = 'date'
 
 
 class SesionForm(forms.ModelForm):
@@ -47,7 +51,7 @@ class SesionForm(forms.ModelForm):
         model = Sesion
         fields = '__all__'
         widgets = {
-            'fecha_sesion': forms.DateInput(attrs={'type': 'date'}),
+            'fecha_sesion': forms.DateInput(attrs={'type': 'date'})
         }
 
 class NotaSesionForm(forms.ModelForm):
@@ -55,7 +59,7 @@ class NotaSesionForm(forms.ModelForm):
         model = NotaSesion
         fields = '__all__'
         widgets = {
-            'fecha_nota': forms.DateInput(attrs={'type': 'date'}),
+            'fecha_nota': forms.DateInput(attrs={'type': 'date'})
         }
 
 class PlanTerapeuticoForm(forms.ModelForm):
@@ -65,7 +69,7 @@ class PlanTerapeuticoForm(forms.ModelForm):
         widgets = {
             'fecha_inicio_plan': forms.DateInput(attrs={'type': 'date'}),
             'fecha_fin_estimada': forms.DateInput(attrs={'type': 'date'}),
-            'fecha_finalizacion_real': forms.DateInput(attrs={'type': 'date'}),
+            'fecha_finalizacion_real': forms.DateInput(attrs={'type': 'date'})
         }
 
 class ActividadForm(forms.ModelForm):
@@ -73,7 +77,7 @@ class ActividadForm(forms.ModelForm):
         model = Actividad
         fields = '__all__'
         widgets = {
-            'fecha_vencimiento': forms.DateInput(attrs={'type': 'date'}),
+            'fecha_vencimiento': forms.DateInput(attrs={'type': 'date'})
         }
 
 class SolicitudUsuarioForm(forms.ModelForm):
@@ -91,9 +95,7 @@ class SolicitudUsuarioForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'username', 'cargo', 'email', 'password']
-        help_texts = {
-            'username': '',
-        }
+        help_texts = {'username': ''}
 
 class UsuarioForm(forms.ModelForm):
     class Meta:
@@ -105,7 +107,7 @@ class UsuarioForm(forms.ModelForm):
             'last_name': forms.TextInput(attrs={'class': 'aurora-input w-full'}),
             'email': forms.EmailInput(attrs={'class': 'aurora-input w-full'}),
             'is_active': forms.CheckboxInput(attrs={'class': 'ml-2'}),
-            'is_staff': forms.CheckboxInput(attrs={'class': 'ml-2'}),
+            'is_staff': forms.CheckboxInput(attrs={'class': 'ml-2'})
         }
 
 class PerfilForm(forms.ModelForm):
@@ -113,7 +115,7 @@ class PerfilForm(forms.ModelForm):
         model = PerfilUsuario
         fields = ['rol']
         widgets = {
-            'rol': forms.Select(attrs={'class': 'aurora-input w-full'}),
+            'rol': forms.Select(attrs={'class': 'aurora-input w-full'})
         }
 
 class DocumentoPacienteForm(forms.ModelForm):
@@ -126,7 +128,7 @@ class CitaForm(forms.ModelForm):
         model = Cita
         fields = '__all__'
         widgets = {
-            'fecha': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'fecha': forms.DateTimeInput(attrs={'type': 'datetime-local'})
         }
 
 class HistorialCambiosForm(forms.ModelForm):
@@ -145,7 +147,7 @@ class PacientePotencialForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'fecha_contacto': forms.DateInput(attrs={'type': 'date'}),
-            'fecha_conversion': forms.DateInput(attrs={'type': 'date'}),
+            'fecha_conversion': forms.DateInput(attrs={'type': 'date'})
         }
 
 class InteraccionMarketingForm(forms.ModelForm):
@@ -158,7 +160,7 @@ class RedSocialForm(forms.ModelForm):
         model = RedSocial
         fields = '__all__'
         widgets = {
-            'fecha_registro': forms.DateInput(attrs={'type': 'date'}),
+            'fecha_registro': forms.DateInput(attrs={'type': 'date'})
         }
 
 class BotWhatsappMensajeForm(forms.ModelForm):
@@ -171,5 +173,5 @@ class CalendarioCumpleanosForm(forms.ModelForm):
         model = CalendarioCumpleanos
         fields = '__all__'
         widgets = {
-            'fecha_cumpleanos': forms.DateInput(attrs={'type': 'date'}),
+            'fecha_cumpleanos': forms.DateInput(attrs={'type': 'date'})
         }

@@ -2,94 +2,84 @@
 {% load static %}
 
 {% block title %}
-    Sesiones - PRM
-{% endblock %}
-
-{% block header %}
-    Sesiones
+Sesiones - Vitalis PRM
 {% endblock %}
 
 {% block content %}
-<div class="container mx-auto px-4 py-8">
-    <div class="card">
-        <div class="flex flex-col sm:flex-row items-center justify-between mb-4">
-            <h1 class="text-2xl font-bold mb-4 sm:mb-0">Listado de Sesiones</h1>
-            
-            <!-- Botón para generar nueva sesión - Siempre visible -->
-            <a href="{% url 'consultorio:sesion_create' %}" 
-               class="btn-primary !bg-blue-600 hover:!bg-blue-700 text-white font-semibold py-2 px-6 rounded-md 
-                      shadow-lg transition duration-300 ease-in-out transform hover:scale-105 
-                      focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75">
-                <i class="fas fa-plus-circle mr-2"></i> Generar Nueva Sesión
-            </a>
-        </div>
-        <div class="overflow-x-auto">
-            <table class="min-w-full divide-y divide-gray-200">
-                <thead>
-                    <tr>
-                        <th class="px-6 py-3 text-left text-xs font-semibold uppercase">
-                            Paciente
-                        </th>
-                        <th class="px-6 py-3 text-left text-xs font-semibold uppercase">
-                            Fecha
-                        </th>
-                        <th class="px-6 py-3 text-left text-xs font-semibold uppercase">
-                            Tipo
-                        </th>
-                        <th class="px-6 py-3 text-left text-xs font-semibold uppercase">
-                            Acciones
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% if sesiones %}
-                        {% for sesion in sesiones %}
-                            <tr class="hover:bg-gray-100 transition-colors">
-                                <td class="px-6 py-4">
-                                    {{ sesion.paciente.nombres }} {{ sesion.paciente.apellidos }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    <span class="badge badge-warning">
-                                        {{ sesion.fecha_sesion|date:'d/m/Y' }}
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <span class="badge"> {{ sesion.get_tipo_sesion_display }} </span>
-                                </td>
-                                <td class="px-6 py-4 flex flex-wrap gap-2"> {# Added flex-wrap for better mobile layout #}
-                                    {% if puede_editar %}
-                                        <a href="{% url 'consultorio:sesion_update' sesion.id %}" class="btn-primary">
-                                            Editar
-                                        </a>
-                                    {% endif %}
-                                    {% if puede_notas %}
-                                        <a href="{% url 'consultorio:nota_sesion_create_update' sesion_id=sesion.pk %}" class="btn-primary">
-                                            {% if sesion.nota_sesion %}
-                                                Ver/Editar Nota
-                                            {% else %}
-                                                Añadir Nota
-                                            {% endif %}
-                                        </a>
-                                    {% endif %}
-                                    {% if puede_eliminar %}
-                                        <a href="{% url 'consultorio:sesion_delete' pk=sesion.pk %}" class="btn-primary" style="background: var(--danger)">
-                                            Eliminar
-                                        </a>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    {% else %}
-                        <tr>
-                            <td colspan="4" class="text-center py-8 text-gray-500"> {# Changed text-light to text-gray-500 for Tailwind compatibility #}
-                                No hay sesiones registradas.
-                            </td>
-                        </tr>
-                    {% endif %}
-                </tbody>
-            </table>
-        </div>
-        {# Eliminado el botón "+ Agregar Sesión" duplicado que estaba al final de la tarjeta #}
-    </div>
+<div class="text-main font-['Montserrat'] pt-2.5 mb-2.5">
+  <!-- Cabecera de sección -->
+  <div class="flex items-center justify-between flex-wrap gap-4 mb-5">
+    <h1 class="dashboard-section-title text-2xl font-bold text-[#1D7B16] leading-none py-0.5">
+      Sesiones
+    </h1>
+    <a href="{% url 'consultorio:sesion_create' %}" class="text-sm font-medium px-4 py-2 rounded-lg shadow transition-colors duration-200" style="background: var(--primary); color: var(--text-white); border: none">
+      + Generar Nueva Sesión
+    </a>
+  </div>
+
+  <!-- Tabla de sesiones -->
+  <div class="bg-white shadow-sm rounded-xl border border-border-light overflow-x-auto">
+    <table class="w-full text-sm text-left text-gray-700" style="border-collapse: separate; border-spacing: 0">
+      <thead class="text-gray-500 uppercase text-xs tracking-wider select-none bg-white">
+        <tr>
+          <th class="px-2 py-2 text-left font-semibold border-b border-gray-200 first:rounded-tl-xl">Paciente</th>
+          <th class="px-2 py-2 text-center font-semibold border-b border-gray-200">Fecha</th>
+          <th class="px-2 py-2 text-center font-semibold border-b border-gray-200">Tipo</th>
+          <th class="px-2 py-2 text-center font-semibold border-b border-gray-200 last:rounded-tr-xl">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for sesion in sesiones %}
+        <tr class="bg-white hover:bg-[#E3F2FD] transition-colors duration-200">
+          <td class="px-2 py-2 text-left align-middle border-b border-gray-200 break-words">
+            {{ sesion.paciente.nombres }} {{ sesion.paciente.apellidos }}
+          </td>
+          <td class="px-2 py-2 text-center align-middle border-b border-gray-200 break-words">
+            <span class="inline-block bg-yellow-100 text-yellow-800 text-xs font-medium px-3 py-1 rounded-full">
+              {{ sesion.fecha_sesion|date:'d/m/Y' }}
+            </span>
+          </td>
+          <td class="px-2 py-2 text-center align-middle border-b border-gray-200 break-words">
+            <span class="inline-block bg-gray-100 text-gray-800 text-xs font-medium px-3 py-1 rounded-full">
+              {{ sesion.get_tipo_sesion_display }}
+            </span>
+          </td>
+          <td class="px-2 py-2 text-center align-middle border-b border-gray-200 break-words">
+            <div class="flex gap-2 justify-center items-center">
+              <a href="{% url 'consultorio:sesion_detail' sesion.pk %}" class="cursor-pointer text-sm font-medium transition-colors duration-200 text-primary">
+                Ver
+              </a>
+              {% if puede_editar %}
+              <a href="{% url 'consultorio:sesion_update' sesion.id %}" class="cursor-pointer text-sm font-medium transition-colors duration-200 text-[#1D7B16]">
+                Editar
+              </a>
+              {% endif %}
+              {% if puede_notas %}
+              <a href="{% url 'consultorio:nota_sesion_create_update' sesion_id=sesion.pk %}" class="cursor-pointer text-sm font-medium transition-colors duration-200 text-[#1D7B16]">
+                {% if sesion.nota_sesion %}
+                  Ver/Editar Nota
+                {% else %}
+                  Añadir Nota
+                {% endif %}
+              </a>
+              {% endif %}
+              {% if puede_eliminar %}
+              <a href="{% url 'consultorio:sesion_delete' pk=sesion.pk %}" class="cursor-pointer text-sm font-medium transition-colors duration-200 text-red-600">
+                Eliminar
+              </a>
+              {% endif %}
+            </div>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="4" class="text-center py-8 text-gray-400">
+            No hay sesiones registradas.
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 </div>
 {% endblock %}

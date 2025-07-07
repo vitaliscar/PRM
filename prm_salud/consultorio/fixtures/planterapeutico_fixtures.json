@@ -9,10 +9,6 @@
       "fecha_inicio_plan": "2025-06-10",
       "fecha_fin_estimada": "2025-09-10",
       "objetivo_principal_terapeutico": "Reducir síntomas de ansiedad laboral.",
-      "metas_especificas": [
-        "Aprender técnicas de relajación",
-        "Mejorar hábitos de sueño"
-      ],
       "enfoque_terapeutico": "Cognitivo-Conductual",
       "estado_plan": "Activo",
       "fecha_finalizacion_real": null,
@@ -29,10 +25,6 @@
       "fecha_inicio_plan": "2025-06-12",
       "fecha_fin_estimada": "2025-09-12",
       "objetivo_principal_terapeutico": "Mejorar habilidades sociales.",
-      "metas_especificas": [
-        "Participar en actividades grupales",
-        "Practicar conversación"
-      ],
       "enfoque_terapeutico": "Humanista",
       "estado_plan": "Activo",
       "fecha_finalizacion_real": null,
@@ -49,10 +41,6 @@
       "fecha_inicio_plan": "2025-06-15",
       "fecha_fin_estimada": "2025-09-15",
       "objetivo_principal_terapeutico": "Aumentar autoestima y autoconfianza.",
-      "metas_especificas": [
-        "Identificar logros personales",
-        "Reforzar pensamientos positivos"
-      ],
       "enfoque_terapeutico": "Integrativo",
       "estado_plan": "Activo",
       "fecha_finalizacion_real": null,
@@ -69,10 +57,6 @@
       "fecha_inicio_plan": "2025-06-18",
       "fecha_fin_estimada": "2025-09-18",
       "objetivo_principal_terapeutico": "Mejorar comunicación en pareja.",
-      "metas_especificas": [
-        "Practicar escucha activa",
-        "Expresar emociones sin juicio"
-      ],
       "enfoque_terapeutico": "Terapia Sistémica",
       "estado_plan": "Activo",
       "fecha_finalizacion_real": null,
@@ -89,10 +73,6 @@
       "fecha_inicio_plan": "2025-06-20",
       "fecha_fin_estimada": "2025-09-20",
       "objetivo_principal_terapeutico": "Superar depresión postparto.",
-      "metas_especificas": [
-        "Fortalecer red de apoyo",
-        "Identificar pensamientos negativos"
-      ],
       "enfoque_terapeutico": "Cognitivo-Conductual",
       "estado_plan": "Activo",
       "fecha_finalizacion_real": null,

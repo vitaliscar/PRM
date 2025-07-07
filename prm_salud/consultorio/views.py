@@ -328,6 +328,14 @@ class PacienteUpdateView(AllStaffRequiredMixin, UpdateView):
         form.enctype = 'multipart/form-data'
         return form
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        obj = form.instance
+        obj.foto_offset_x = self.request.POST.get('foto_offset_x', 50)
+        obj.foto_offset_y = self.request.POST.get('foto_offset_y', 50)
+        obj.save()
+        return response
+
 class PacienteDeleteView(AdminRequiredMixin, DeleteView):
     model = Paciente
     template_name = 'consultorio/confirm_delete.html'
@@ -1128,3 +1136,9 @@ class PlanTerapeuticoDetailView(LoginRequiredMixin, DetailView):
         context['paciente'] = plan.paciente
         context['profesional'] = plan.professional
         return context
+
+# --- DETALLE DE SESIÓN ---
+class SesionDetailView(DetailView):
+    model = Sesion
+    template_name = 'consultorio/sesiones/sesion_detail.html'
+    context_object_name = 'sesion'
